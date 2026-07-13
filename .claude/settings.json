@@ -1,0 +1,23 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git checkout *)",
+      "Bash(npm install *)",
+      "Bash(npm run *)",
+      "Bash(timeout 40 tail -n +1 -f \"C:\\\\Users\\\\JSK\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\c--Users-JSK-Documents-GitHub-webora\\\\b8603cbf-1671-47ec-82d6-bc54472f4633\\\\tasks\\\\bzn3m9h6s.output\")",
+      "Bash(git fetch *)",
+      "Bash(gh auth *)",
+      "Bash(gh api *)",
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)",
+      "Bash(git push *)",
+      "Bash(gh repo *)",
+      "Bash(curl -sIL --max-time 10 https://webora-398.netlify.app)",
+      "Bash(curl -sIL --max-time 10 https://webora.is-a.dev)",
+      "Bash(curl -s -o /dev/null -w \"HTTP:%{http_code}\\\\n\" --max-time 10 --ssl-no-revoke https://webora-398.netlify.app)",
+      "Bash(curl -s -o /dev/null -w \"HTTP:%{http_code}\\\\n\" --max-time 10 --ssl-no-revoke https://webora.is-a.dev)",
+      "Bash(curl -s --max-time 10 --ssl-no-revoke https://webora.is-a.dev)",
+      "Bash(gh run *)"
+    ]
+  }
+}
