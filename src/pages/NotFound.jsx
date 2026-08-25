@@ -1,6 +1,16 @@
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
+import { useSEO } from '../hooks/useSEO.js'
 
 export default function NotFound() {
+  const { pathname } = useLocation()
+
+  useSEO({
+    title: 'Page Not Found — webora is a dev',
+    description: "The page you're looking for was moved, renamed, or never existed.",
+    path: pathname,
+    noindex: true,
+  })
+
   return (
     <section className="container not-found">
       <div className="eyebrow" style={{ justifyContent: 'center', marginBottom: '1.5rem' }}>404</div>

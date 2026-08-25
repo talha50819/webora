@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { roles } from '../data/roles.js'
+import { useSEO } from '../hooks/useSEO.js'
 
 const perks = [
   { title: 'Remote-first, always', desc: 'webora is a dev — remote from day one, with no office to eventually mandate a return to.' },
@@ -8,6 +9,13 @@ const perks = [
 ]
 
 export default function Careers() {
+  useSEO({
+    title: 'Careers — webora is a dev',
+    description:
+      'Open to collaborate with senior engineers across web, mobile, cloud, security, AI, and design at webora is a dev — a small, founder-led team.',
+    path: '/careers',
+  })
+
   return (
     <>
       <section className="hero container" style={{ paddingBottom: 'var(--space-4)' }}>

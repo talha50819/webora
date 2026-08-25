@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { useSEO } from '../hooks/useSEO.js'
 
 const timeline = [
   ['2020', 'Muhammad Talha Siddiqui starts out as an independent freelance developer, taking on web and software contracts solo.'],
@@ -23,6 +24,13 @@ const principles = [
 ]
 
 export default function About() {
+  useSEO({
+    title: 'About — webora is a dev',
+    description:
+      'webora is a dev started in 2020 as one freelance developer and grew into a full-spectrum technology company without losing the habit of shipping it right.',
+    path: '/about',
+  })
+
   return (
     <>
       <section className="hero container" style={{ paddingBottom: 'var(--space-4)' }}>

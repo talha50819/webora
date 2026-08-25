@@ -1,12 +1,19 @@
 import { useEffect, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { services } from '../data/services.js'
+import { useSEO } from '../hooks/useSEO.js'
 
 const FORM_ENDPOINT = 'https://formspree.io/talhasiddiqui433@gmail.com'
 
 export default function Contact() {
   const [searchParams, setSearchParams] = useSearchParams()
   const [submitted, setSubmitted] = useState(false)
+
+  useSEO({
+    title: 'Contact — webora is a dev',
+    description: "Tell us what you're building. webora is a dev replies within one business day.",
+    path: '/contact',
+  })
 
   useEffect(() => {
     if (searchParams.get('sent') === 'true') {
