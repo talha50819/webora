@@ -6,6 +6,7 @@ const links = [
   { to: paths.services, label: 'Services' },
   { to: paths.work, label: 'Work' },
   { to: paths.about, label: 'About' },
+  { to: paths.liveTv, label: 'Live TV' },
   { to: paths.contact, label: 'Contact' },
 ]
 
