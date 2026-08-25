@@ -1,14 +1,10 @@
 import { Link } from 'react-router-dom'
 import { services } from '../data/services.js'
 import { useSEO } from '../hooks/useSEO.js'
+import { siteRoutes } from '../data/seo-content.js'
 
 export default function Services() {
-  useSEO({
-    title: 'Services — webora is a dev',
-    description:
-      'Seven full-spectrum engineering disciplines — web, mobile, cloud & DevOps, cybersecurity, AI/ML, UI/UX design, and IT consulting — carried by one senior team.',
-    path: '/services',
-  })
+  useSEO(siteRoutes.services)
 
   return (
     <>

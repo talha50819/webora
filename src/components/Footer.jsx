@@ -39,9 +39,8 @@ export default function Footer() {
         </div>
         <div className="footer-col">
           <div className="footer-col__title">Follow</div>
-          <a href="#">LinkedIn</a>
-          <a href="#">GitHub</a>
-          <a href="#">X / Twitter</a>
+          <a href="https://www.linkedin.com/in/muhammad-talha-siddiqui-406b49267" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <a href="https://github.com/talha50819" target="_blank" rel="noopener noreferrer">GitHub</a>
         </div>
       </div>
 

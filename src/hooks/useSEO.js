@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
+import { SITE_URL, SITE_NAME, DEFAULT_OG_IMAGE } from '../data/seo-content.js'
 
-export const SITE_URL = 'https://webora.is-a.dev'
-export const SITE_NAME = 'webora is a dev'
+export { SITE_URL, SITE_NAME, DEFAULT_OG_IMAGE }
 
 function setMetaByName(name, content) {
   if (!content) return
@@ -55,9 +55,11 @@ function setJsonLd(jsonLd) {
  * Open Graph / Twitter Card tags, robots directive, and optional
  * JSON-LD structured data. Runs client-side on every route change —
  * search engines that execute JavaScript (Google, Bing) pick this up;
- * for crawlers that don't, the static tags in index.html are the fallback.
+ * for crawlers and social link-preview bots that don't, `scripts/prerender-meta.mjs`
+ * bakes the same metadata (sourced from `src/data/seo-content.js`) into a
+ * static per-route `index.html` at build time as the fallback.
  */
-export function useSEO({ title, description, path = '/', noindex = false, jsonLd = null }) {
+export function useSEO({ title, description, path = '/', noindex = false, jsonLd = null, image = DEFAULT_OG_IMAGE }) {
   useEffect(() => {
     if (title) document.title = title
 
@@ -72,11 +74,13 @@ export function useSEO({ title, description, path = '/', noindex = false, jsonLd
     setMetaByProperty('og:url', url)
     setMetaByProperty('og:type', 'website')
     setMetaByProperty('og:site_name', SITE_NAME)
+    setMetaByProperty('og:image', image)
 
-    setMetaByName('twitter:card', 'summary')
+    setMetaByName('twitter:card', 'summary_large_image')
     setMetaByName('twitter:title', title)
     setMetaByName('twitter:description', description)
+    setMetaByName('twitter:image', image)
 
     setJsonLd(jsonLd)
-  }, [title, description, path, noindex, jsonLd])
+  }, [title, description, path, noindex, jsonLd, image])
 }

@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import Marquee from '../components/Marquee.jsx'
 import { services } from '../data/services.js'
 import { useSEO } from '../hooks/useSEO.js'
+import { siteRoutes } from '../data/seo-content.js'
 
 const values = [
   {
@@ -19,12 +20,7 @@ const values = [
 ]
 
 export default function Home() {
-  useSEO({
-    title: 'webora is a dev — Engineering Systems That Hold',
-    description:
-      'webora is a dev — full-spectrum technology partner for software, cloud, security, and AI. Senior engineers only, fixed scope, and infrastructure built to last.',
-    path: '/',
-  })
+  useSEO(siteRoutes.home)
 
   return (
     <>

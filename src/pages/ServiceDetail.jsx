@@ -1,39 +1,20 @@
 import { useParams, Link, Navigate } from 'react-router-dom'
 import { services, getServiceBySlug } from '../data/services.js'
-import { useSEO, SITE_URL, SITE_NAME } from '../hooks/useSEO.js'
+import { useSEO, SITE_NAME } from '../hooks/useSEO.js'
+import { buildServiceSeo } from '../data/seo-content.js'
 
 export default function ServiceDetail() {
   const { slug } = useParams()
   const service = getServiceBySlug(slug)
+  const seo = buildServiceSeo(service)
 
-  useSEO({
-    title: service ? `${service.name} — ${SITE_NAME}` : `Service not found — ${SITE_NAME}`,
-    description: service ? service.summary : undefined,
-    path: `/services/${slug}`,
-    noindex: !service,
-    jsonLd: service
-      ? [
-          {
-            '@context': 'https://schema.org',
-            '@type': 'Service',
-            name: service.name,
-            description: service.summary,
-            provider: { '@type': 'Organization', name: SITE_NAME, url: `${SITE_URL}/` },
-            areaServed: 'Worldwide',
-            url: `${SITE_URL}/services/${service.slug}`,
-          },
-          {
-            '@context': 'https://schema.org',
-            '@type': 'BreadcrumbList',
-            itemListElement: [
-              { '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE_URL}/` },
-              { '@type': 'ListItem', position: 2, name: 'Services', item: `${SITE_URL}/services` },
-              { '@type': 'ListItem', position: 3, name: service.name, item: `${SITE_URL}/services/${service.slug}` },
-            ],
-          },
-        ]
-      : null,
-  })
+  useSEO(
+    seo || {
+      title: `Service not found — ${SITE_NAME}`,
+      path: `/services/${slug}`,
+      noindex: true,
+    }
+  )
 
   if (!service) return <Navigate to="/services" replace />
 

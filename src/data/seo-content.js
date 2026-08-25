@@ -1,0 +1,81 @@
+// Single source of truth for per-route SEO metadata.
+//
+// Consumed two ways:
+//   1. `useSEO()` calls in each page component, at runtime.
+//   2. `scripts/prerender-meta.mjs`, at build time, which bakes this same
+//      metadata into a static `<head>` per route so crawlers and social-media
+//      link-preview bots that don't execute JavaScript still see correct
+//      per-page titles, descriptions, and Open Graph tags.
+// Keeping it here (plain data, no JSX/React) means both consumers stay in
+// sync automatically instead of drifting.
+
+export const SITE_URL = 'https://webora.is-a.dev'
+export const SITE_NAME = 'webora is a dev'
+export const DEFAULT_OG_IMAGE = `${SITE_URL}/og-image.png`
+
+export const siteRoutes = {
+  home: {
+    title: 'webora is a dev — Engineering Systems That Hold',
+    description:
+      'webora is a dev — full-spectrum technology partner for software, cloud, security, and AI. Senior engineers only, fixed scope, and infrastructure built to last.',
+    path: '/',
+  },
+  services: {
+    title: 'Services — webora is a dev',
+    description:
+      'Seven full-spectrum engineering disciplines — web, mobile, cloud & DevOps, cybersecurity, AI/ML, UI/UX design, and IT consulting — carried by one senior team.',
+    path: '/services',
+  },
+  about: {
+    title: 'About — webora is a dev',
+    description:
+      'webora is a dev started in 2020 as one freelance developer and grew into a full-spectrum technology company without losing the habit of shipping it right.',
+    path: '/about',
+  },
+  work: {
+    title: 'Selected Work — webora is a dev',
+    description:
+      'A sample of client work across web, mobile, cloud, security, design, and AI, delivered before webora is a dev had a name.',
+    path: '/work',
+  },
+  careers: {
+    title: 'Careers — webora is a dev',
+    description:
+      'Open to collaborate with senior engineers across web, mobile, cloud, security, AI, and design at webora is a dev — a small, founder-led team.',
+    path: '/careers',
+  },
+  contact: {
+    title: 'Contact — webora is a dev',
+    description: "Tell us what you're building. webora is a dev replies within one business day.",
+    path: '/contact',
+  },
+}
+
+export function buildServiceSeo(service) {
+  if (!service) return null
+  return {
+    title: `${service.name} — ${SITE_NAME}`,
+    description: service.summary,
+    path: `/services/${service.slug}`,
+    jsonLd: [
+      {
+        '@context': 'https://schema.org',
+        '@type': 'Service',
+        name: service.name,
+        description: service.summary,
+        provider: { '@type': 'Organization', name: SITE_NAME, url: `${SITE_URL}/` },
+        areaServed: 'Worldwide',
+        url: `${SITE_URL}/services/${service.slug}`,
+      },
+      {
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE_URL}/` },
+          { '@type': 'ListItem', position: 2, name: 'Services', item: `${SITE_URL}/services` },
+          { '@type': 'ListItem', position: 3, name: service.name, item: `${SITE_URL}/services/${service.slug}` },
+        ],
+      },
+    ],
+  }
+}
