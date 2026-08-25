@@ -6,9 +6,11 @@
 // raw HTML and would otherwise see Home's title/description/OG tags on every
 // inner page.
 //
-// This script clones `dist/index.html` into a static `index.html` per route
-// (e.g. `dist/about/index.html`, `dist/services/web-development/index.html`)
-// with the <head> tags swapped to that route's real metadata, sourced from
+// This script clones the built `dist/index.html` as a template and writes a
+// static `index.html` per route (Home overwrites `dist/index.html` itself;
+// every other route gets `dist/<path>/index.html`, e.g.
+// `dist/services/web-development/index.html`) with the <head> tags swapped
+// to that route's real metadata, sourced from
 // `src/data/seo-content.js` — the same module the client-side `useSEO` hook
 // reads from, so the two can't drift apart. Netlify (and most static hosts)
 // serve `<folder>/index.html` for a request to `<folder>`, so this needs no
@@ -58,14 +60,16 @@ function renderRoute({ title, description, path, jsonLd }) {
 
 function writeRoute(route) {
   const html = renderRoute(route)
-  const outDir = join(distDir, route.path)
+  // Home ("/") overwrites dist/index.html directly; every other route gets
+  // its own dist/<path>/index.html.
+  const outDir = route.path === '/' ? distDir : join(distDir, route.path)
   mkdirSync(outDir, { recursive: true })
   writeFileSync(join(outDir, 'index.html'), html)
   console.log(`  prerendered ${route.path}`)
 }
 
-// Home is skipped — dist/index.html is already Home's metadata as built.
 const routes = [
+  siteRoutes.home,
   siteRoutes.services,
   siteRoutes.about,
   siteRoutes.work,

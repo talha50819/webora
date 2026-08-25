@@ -13,12 +13,56 @@ export const SITE_URL = 'https://webora.is-a.dev'
 export const SITE_NAME = 'webora is a dev'
 export const DEFAULT_OG_IMAGE = `${SITE_URL}/og-image.png`
 
+// Rendered on Home as a visible FAQ section and exposed as FAQPage JSON-LD
+// for rich-result eligibility. Every answer restates a claim already made
+// elsewhere on the site (value props, About, Careers, Contact) — no new
+// facts are introduced here.
+export const faqs = [
+  {
+    q: 'How is pricing structured?',
+    a: "Fixed scope, fixed cost. We scope carefully up front so the estimate is a commitment, not an opening offer — the number doesn't move in month two.",
+  },
+  {
+    q: 'Who actually works on my project?',
+    a: 'Senior engineers only — no bench of juniors learning on your invoice. Every engagement is staffed by people who have shipped that category of work before.',
+  },
+  {
+    q: 'Do we own the code and infrastructure after the engagement ends?',
+    a: "Yes — code, infrastructure, credentials, and documentation. Nothing is held hostage in a vendor-only repo when the engagement ends.",
+  },
+  {
+    q: 'How fast do you respond to a new project inquiry?',
+    a: 'Under one business day. Tell us what you’re building on the contact page and you’ll hear back from an engineer, not a sales queue.',
+  },
+  {
+    q: 'Is webora is a dev remote-first?',
+    a: 'Yes — remote from day one, with no office to eventually mandate a return to. You work directly with the person building your system.',
+  },
+  {
+    q: 'What disciplines does webora is a dev cover?',
+    a: 'Seven: web development, mobile app development, cloud & DevOps, cybersecurity, AI & machine learning, UI/UX design, and IT consulting — carried by one senior team.',
+  },
+]
+
+function buildFaqJsonLd(items) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: items.map(({ q, a }) => ({
+      '@type': 'Question',
+      name: q,
+      acceptedAnswer: { '@type': 'Answer', text: a },
+    })),
+  }
+}
+
 export const siteRoutes = {
   home: {
     title: 'webora is a dev — Engineering Systems That Hold',
     description:
       'webora is a dev — full-spectrum technology partner for software, cloud, security, and AI. Senior engineers only, fixed scope, and infrastructure built to last.',
     path: '/',
+    jsonLd: buildFaqJsonLd(faqs),
   },
   services: {
     title: 'Services — webora is a dev',

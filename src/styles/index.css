@@ -444,6 +444,30 @@ h1, h2, h3, h4 {
 }
 .capability-item__index { font-family: var(--font-mono); color: var(--accent); font-weight: 700; min-width: 2rem; }
 
+.faq-list { border-top: var(--border); }
+.faq-item { border-bottom: var(--border); padding: var(--space-2) 0; }
+.faq-item__q {
+  display: flex;
+  gap: var(--space-3);
+  align-items: baseline;
+  cursor: pointer;
+  font-weight: 700;
+  list-style: none;
+}
+.faq-item__q::-webkit-details-marker { display: none; }
+.faq-item__q::after {
+  content: '+';
+  margin-left: auto;
+  font-family: var(--font-mono);
+  color: var(--accent);
+}
+.faq-item[open] .faq-item__q::after { content: '\2212'; }
+.faq-item__a {
+  color: var(--ink-soft);
+  margin-top: var(--space-2);
+  padding-left: calc(2rem + var(--space-3));
+}
+
 .process-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);

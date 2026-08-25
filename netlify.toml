@@ -2,7 +2,28 @@
   command = "npm run build"
   publish = "dist"
 
+# Every real route is prerendered to a static index.html at build time
+# (see scripts/prerender-meta.mjs), so Netlify serves those directly with a
+# normal 200. This catch-all only fires for paths that don't match any
+# prerendered file or hashed asset — i.e. genuinely unknown URLs — and
+# returns a real HTTP 404 (not a soft 200) while still rendering the app's
+# NotFound page (which sets <meta name="robots" content="noindex,nofollow">)
+# so search engines correctly drop the URL instead of indexing it.
 [[redirects]]
   from = "/*"
   to = "/index.html"
-  status = 200
+  status = 404
+
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "DENY"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+    Strict-Transport-Security = "max-age=31536000; includeSubDomains"

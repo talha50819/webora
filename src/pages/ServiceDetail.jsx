@@ -23,6 +23,19 @@ export default function ServiceDetail() {
 
   return (
     <>
+      <nav aria-label="Breadcrumb" className="container" style={{ paddingTop: 'var(--space-3)' }}>
+        <ol
+          className="type-mono"
+          style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap', color: 'var(--ink-soft)', listStyle: 'none', padding: 0, margin: 0, fontSize: '0.85rem' }}
+        >
+          <li><Link to="/" style={{ color: 'inherit' }}>Home</Link></li>
+          <li aria-hidden="true">/</li>
+          <li><Link to="/services" style={{ color: 'inherit' }}>Services</Link></li>
+          <li aria-hidden="true">/</li>
+          <li aria-current="page" style={{ color: 'var(--ink)' }}>{service.name}</li>
+        </ol>
+      </nav>
+
       <section className="hero container" style={{ paddingBottom: 'var(--space-4)' }}>
         <div className="hero__label eyebrow">
           Service {service.index} / {String(services.length).padStart(2, '0')}

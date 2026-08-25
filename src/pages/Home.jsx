@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 import Marquee from '../components/Marquee.jsx'
 import { services } from '../data/services.js'
 import { useSEO } from '../hooks/useSEO.js'
-import { siteRoutes } from '../data/seo-content.js'
+import { siteRoutes, faqs } from '../data/seo-content.js'
 
 const values = [
   {
@@ -105,6 +105,26 @@ export default function Home() {
                 <div className="value-card__title">{v.title}</div>
                 <div className="value-card__desc">{v.desc}</div>
               </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section">
+        <div className="container">
+          <div className="eyebrow" style={{ marginBottom: '1rem' }}>FAQ</div>
+          <h2 className="type-h2" style={{ marginBottom: '2rem', maxWidth: '24ch' }}>
+            Questions we hear before the first call.
+          </h2>
+          <div className="faq-list">
+            {faqs.map((item, i) => (
+              <details className="faq-item" key={item.q}>
+                <summary className="faq-item__q">
+                  <span className="capability-item__index">{String(i + 1).padStart(2, '0')}</span>
+                  <span>{item.q}</span>
+                </summary>
+                <p className="faq-item__a">{item.a}</p>
+              </details>
             ))}
           </div>
         </div>
