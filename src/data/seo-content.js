@@ -25,6 +25,7 @@ export const paths = {
   about: '/about/',
   work: '/work/',
   contact: '/contact/',
+  liveTv: '/live-tv/',
   service: (slug) => `/services/${slug}/`,
 }
 
@@ -56,6 +57,29 @@ export const faqs = [
   {
     q: 'What disciplines does webora is a dev cover?',
     a: "Seven: web development, mobile app development, cloud & DevOps, cybersecurity, AI & machine learning, UI/UX design, and IT consulting — all coordinated by me personally, whether I'm building it myself or directing a vetted specialist for a piece outside my core stack.",
+  },
+]
+
+// Live TV is a standalone tool, unrelated to the agency services above —
+// kept out of the FAQ voice used elsewhere (no "I"/"we" claims about
+// broadcast rights) and out of the main site's indexing (see siteRoutes.liveTv
+// below) so it doesn't dilute what this domain is about for search engines.
+export const liveTvFaqs = [
+  {
+    q: 'How many live TV channels are available?',
+    a: 'Thousands of free channels from around the world, covering news, sports, entertainment, and more — sourced from the public iptv-org channel index.',
+  },
+  {
+    q: 'Can I filter channels by country and category?',
+    a: 'Yes — use the search box plus the country and category filters to narrow the list down to what you want to watch.',
+  },
+  {
+    q: 'Is this free to use?',
+    a: 'Yes, no subscription or account required. Availability of any given stream depends on the source broadcaster, not this page.',
+  },
+  {
+    q: 'Which devices can I use to watch?',
+    a: 'Any device with a modern web browser — desktop, laptop, tablet, or phone.',
   },
 ]
 
@@ -101,6 +125,18 @@ export const siteRoutes = {
     title: 'Contact — webora is a dev',
     description: "Tell me what you're building — I reply within one business day.",
     path: paths.contact,
+  },
+  // Standalone tool, not part of the agency-services topic this site is
+  // otherwise built around — noindex'd on purpose (see comment above
+  // liveTvFaqs) and left out of sitemap.xml. Remove `noindex` and add it
+  // to the sitemap if that tradeoff ever changes.
+  liveTv: {
+    title: 'Live TV — Free Global Channels Online',
+    description:
+      'Stream thousands of free live TV channels worldwide — search and filter by country and category, no subscription required.',
+    path: paths.liveTv,
+    noindex: true,
+    jsonLd: buildFaqJsonLd(liveTvFaqs),
   },
 }
 

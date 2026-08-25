@@ -37,13 +37,14 @@ function escapeText(str) {
   return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
 }
 
-function renderRoute({ title, description, path, jsonLd }) {
+function renderRoute({ title, description, path, jsonLd, noindex }) {
   const url = `${SITE_URL}${path}`
   let html = template
 
   html = html.replace(/<title>.*?<\/title>/s, `<title>${escapeText(title)}</title>`)
   html = html.replace(/(<link rel="canonical" href=")[^"]*(")/, `$1${escapeAttr(url)}$2`)
   html = html.replace(/(<meta name="description" content=")[^"]*(")/, `$1${escapeAttr(description)}$2`)
+  html = html.replace(/(<meta name="robots" content=")[^"]*(")/, `$1${noindex ? 'noindex, nofollow' : 'index, follow'}$2`)
   html = html.replace(/(<meta property="og:title" content=")[^"]*(")/, `$1${escapeAttr(title)}$2`)
   html = html.replace(/(<meta property="og:description" content=")[^"]*(")/, `$1${escapeAttr(description)}$2`)
   html = html.replace(/(<meta property="og:url" content=")[^"]*(")/, `$1${escapeAttr(url)}$2`)
@@ -74,6 +75,7 @@ const routes = [
   siteRoutes.about,
   siteRoutes.work,
   siteRoutes.contact,
+  siteRoutes.liveTv,
   ...services.map((s) => buildServiceSeo(s)),
 ]
 
