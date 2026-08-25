@@ -2,9 +2,9 @@ import { Link } from 'react-router-dom'
 import { roles } from '../data/roles.js'
 
 const perks = [
-  { title: 'Remote-first, always', desc: 'Webora is built remote from day one — no office to eventually mandate a return to.' },
+  { title: 'Remote-first, always', desc: 'webora is a dev — remote from day one, with no office to eventually mandate a return to.' },
   { title: 'Work directly with the founder', desc: "No management layer relaying notes. You'll talk to the person who owns the client relationship." },
-  { title: 'Get in on the ground floor', desc: "Webora is still forming its team. Early collaborators help shape how it's run, not just execute inside a process someone else already set." },
+  { title: 'Get in on the ground floor', desc: "The team is still forming at webora is a dev. Early collaborators help shape how it's run, not just execute inside a process someone else already set." },
 ]
 
 export default function Careers() {
@@ -16,8 +16,8 @@ export default function Careers() {
           Work with engineers who'd rather ship it right than ship it twice.
         </h1>
         <p className="type-lede mt-4">
-          Webora is a small, founder-led team taking on client work project by
-          project. There's no fixed org chart yet — collaborators are brought on
+          webora is a dev — a small, founder-led team taking on client work project
+          by project. There's no fixed org chart yet — collaborators are brought on
           as the work requires it.
         </p>
       </section>

@@ -4,7 +4,7 @@ const timeline = [
   ['2020', 'Muhammad Talha Siddiqui starts out as an independent freelance developer, taking on web and software contracts solo.'],
   ['2022', 'Referral-driven client work expands into mobile, cloud, and security engagements — still a one-person operation.'],
   ['2024', 'First collaborators come on board project by project as demand outgrows what one person can deliver alone.'],
-  ['2026', 'Webora incorporates as a full-spectrum technology company, formalizing the practices built over five years of freelance work.'],
+  ['2026', 'The practice incorporates as webora is a dev, a full-spectrum technology company formalizing the practices built over five years of freelance work.'],
 ]
 
 const principles = [
@@ -26,15 +26,15 @@ export default function About() {
   return (
     <>
       <section className="hero container" style={{ paddingBottom: 'var(--space-4)' }}>
-        <div className="hero__label eyebrow">About Webora</div>
+        <div className="hero__label eyebrow">About webora is a dev</div>
         <h1 className="type-h1" style={{ maxWidth: '20ch' }}>
           Started by one freelancer who insisted on shipping it right. Still true.
         </h1>
         <p className="type-lede mt-4">
-          Webora began in 2020 as one developer taking on freelance contracts. What
-          grew was not headcount for its own sake — it was the range of problems clients
-          trusted us to solve, from a single feature to the cloud migration behind it.
-          Webora is that work, formalized into a company.
+          webora is a dev began in 2020 as one developer taking on freelance contracts.
+          What grew was not headcount for its own sake — it was the range of problems
+          clients trusted us to solve, from a single feature to the cloud migration
+          behind it. That work, formalized into a company, became webora is a dev.
         </p>
       </section>
 
@@ -45,10 +45,10 @@ export default function About() {
             <h2 className="type-h2">Muhammad Talha Siddiqui</h2>
           </div>
           <p className="type-lede" style={{ maxWidth: 'none' }}>
-            Founder of Webora. Started freelancing in 2020 and spent five years
-            taking direct responsibility for every project delivered — the habit
-            that now shapes how Webora is run: small teams, direct communication,
-            and no work handed off to someone who hasn't done it before.
+            Founder of webora is a dev. Started freelancing in 2020 and spent five
+            years taking direct responsibility for every project delivered — the
+            habit that now shapes how things run here: small teams, direct
+            communication, and no work handed off to someone who hasn't done it before.
           </p>
         </div>
       </section>

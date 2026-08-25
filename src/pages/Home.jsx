@@ -27,9 +27,9 @@ export default function Home() {
           your business runs on.
         </h1>
         <p className="type-lede">
-          Webora is an engineering firm — software, cloud, security, and AI —
-          for companies that need infrastructure built once and operated for years,
-          not a demo that impresses in the first sprint and buckles in the third.
+          webora is a dev — an engineering firm spanning software, cloud, security,
+          and AI — for companies that need infrastructure built once and operated
+          for years, not a demo that impresses in the first sprint and buckles in the third.
         </p>
         <div className="hero__footer">
           <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
@@ -88,7 +88,7 @@ export default function Home() {
 
       <section className="section section--alt">
         <div className="container">
-          <div className="eyebrow" style={{ marginBottom: '1rem' }}>Why Webora</div>
+          <div className="eyebrow" style={{ marginBottom: '1rem' }}>Why webora is a dev</div>
           <h2 className="type-h2" style={{ marginBottom: '2rem', maxWidth: '24ch' }}>
             Most vendors optimize for the kickoff call. We optimize for year three.
           </h2>
