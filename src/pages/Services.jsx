@@ -14,8 +14,8 @@ export default function Services() {
           Full-spectrum engineering, sold as seven disciplines instead of one vague retainer.
         </h1>
         <p className="type-lede mt-4">
-          Engage one service or stitch several together — the same senior team carries
-          context across all of them, so nothing gets lost in a handoff between vendors.
+          Engage one service or stitch several together — I carry the context across
+          all of them personally, so nothing gets lost in a handoff between vendors.
         </p>
       </section>
 

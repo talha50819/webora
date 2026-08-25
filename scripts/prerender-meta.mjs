@@ -73,7 +73,6 @@ const routes = [
   siteRoutes.services,
   siteRoutes.about,
   siteRoutes.work,
-  siteRoutes.careers,
   siteRoutes.contact,
   ...services.map((s) => buildServiceSeo(s)),
 ]

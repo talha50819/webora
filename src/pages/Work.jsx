@@ -15,7 +15,7 @@ export default function Work() {
         </h1>
         <p className="type-lede mt-4">
           A sample of client work from 2020–2024, delivered solo before webora is a dev
-          incorporated. Details are illustrative — client names withheld by
+          existed as a name. Details are illustrative — client names withheld by
           request, not fabricated for effect.
         </p>
       </section>

@@ -30,7 +30,6 @@ export default function Footer() {
           <div className="footer-col__title">Company</div>
           <Link to={paths.about}>About</Link>
           <Link to={paths.work}>Work</Link>
-          <Link to={paths.careers}>Careers</Link>
           <Link to={paths.contact}>Contact</Link>
         </div>
         <div className="footer-col">

@@ -6,12 +6,12 @@ import { siteRoutes, faqs, paths } from '../data/seo-content.js'
 
 const values = [
   {
-    title: 'Senior engineers only',
-    desc: 'No bench of juniors learning on your invoice. Every engagement is staffed by people who have shipped the thing before.',
+    title: 'The right person for the job',
+    desc: "I do the work myself where it's my core strength. Where a project needs something outside that, I bring in a specialist I've already vetted and worked with — never a stranger learning on your invoice. Either way, I stay the one point of contact.",
   },
   {
     title: 'Fixed scope, fixed cost',
-    desc: 'Estimates are commitments, not opening offers. We scope carefully up front so the number doesn’t move in month two.',
+    desc: "Estimates are commitments, not opening offers. I scope carefully up front so the number doesn't move in month two.",
   },
   {
     title: 'You own everything',
@@ -27,13 +27,14 @@ export default function Home() {
       <section className="hero container">
         <div className="hero__label eyebrow">Full-spectrum technology partner</div>
         <h1 className="type-display hero__title">
-          We build the <span className="accent">systems</span><br />
+          I build the <span className="accent">systems</span><br />
           your business runs on.
         </h1>
         <p className="type-lede">
-          webora is a dev — an engineering firm spanning software, cloud, security,
-          and AI — for companies that need infrastructure built once and operated
-          for years, not a demo that impresses in the first sprint and buckles in the third.
+          webora is a dev — I plan, build, and deliver software, cloud, security,
+          and AI projects for companies that need infrastructure built once and
+          operated for years, not a demo that impresses in the first sprint and
+          buckles in the third.
         </p>
         <div className="hero__footer">
           <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
@@ -57,23 +58,24 @@ export default function Home() {
 
       <section className="section section--ink">
         <div className="container">
-          <div className="eyebrow" style={{ marginBottom: '1.5rem' }}>Where we are</div>
+          <div className="eyebrow" style={{ marginBottom: '1.5rem' }}>Where I am</div>
           <h2 className="type-h2" style={{ maxWidth: '30ch' }}>
-            Founder-led since 2020. Now building the company around the work,
-            not the other way around.
+            Independent since 2020 — still doing the work, now with specialists
+            to call on.
           </h2>
           <p className="type-lede mt-3" style={{ color: 'rgba(237,233,223,0.7)' }}>
-            You talk directly to the person building your system — no account manager
-            relaying notes from an engineer you'll never meet.
+            You talk directly to me, the person building or directing your
+            system — never an account manager relaying notes from someone
+            you'll never meet.
           </p>
         </div>
       </section>
 
       <section className="section">
         <div className="container">
-          <div className="eyebrow" style={{ marginBottom: '1rem' }}>What we do</div>
+          <div className="eyebrow" style={{ marginBottom: '1rem' }}>What I do</div>
           <h2 className="type-h2" style={{ marginBottom: '2rem', maxWidth: '20ch' }}>
-            Seven disciplines. One team that already knows how they fit together.
+            Seven disciplines. One person who already knows how they fit together.
           </h2>
           <div className="service-list">
             {services.map((s) => (
@@ -94,7 +96,7 @@ export default function Home() {
         <div className="container">
           <div className="eyebrow" style={{ marginBottom: '1rem' }}>Why webora is a dev</div>
           <h2 className="type-h2" style={{ marginBottom: '2rem', maxWidth: '24ch' }}>
-            Most vendors optimize for the kickoff call. We optimize for year three.
+            Most vendors optimize for the kickoff call. I optimize for year three.
           </h2>
         </div>
         <div className="container" style={{ padding: 0 }}>
@@ -114,7 +116,7 @@ export default function Home() {
         <div className="container">
           <div className="eyebrow" style={{ marginBottom: '1rem' }}>FAQ</div>
           <h2 className="type-h2" style={{ marginBottom: '2rem', maxWidth: '24ch' }}>
-            Questions we hear before the first call.
+            Questions I hear before the first call.
           </h2>
           <div className="faq-list">
             {faqs.map((item, i) => (
@@ -133,7 +135,7 @@ export default function Home() {
       <section className="section" style={{ borderBottom: 'none' }}>
         <div className="container cta-band">
           <h2 className="type-h2" style={{ maxWidth: '18ch' }}>
-            Tell us what's breaking. We'll tell you what it takes to fix it.
+            Tell me what's breaking. I'll tell you what it takes to fix it.
           </h2>
           <Link to={paths.contact} className="btn btn--solid">Get a technical audit →</Link>
         </div>

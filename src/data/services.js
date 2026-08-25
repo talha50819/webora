@@ -7,7 +7,7 @@ export const services = [
     summary:
       'Custom web platforms and product engineering — from the first line of architecture to the system that survives its tenth traffic spike.',
     description:
-      'We design and build web applications as production systems, not demos. That means architecture decisions get made before the first component does: how data flows, where state lives, what breaks first under load, and how the thing gets deployed without a Friday-night incident. We work in React, Next.js, and Node on the frontend and backend, and we are equally comfortable inheriting a decade-old codebase as we are starting from a blank repo.',
+      'I design and build web applications as production systems, not demos. That means architecture decisions get made before the first component does: how data flows, where state lives, what breaks first under load, and how the thing gets deployed without a Friday-night incident. I work in React, Next.js, and Node on the frontend and backend, and I’m equally comfortable inheriting a decade-old codebase as starting from a blank repo.',
     capabilities: [
       'Product engineering from spec to production',
       'Design systems and component architecture',
@@ -32,7 +32,7 @@ export const services = [
     summary:
       'iOS, Android, and cross-platform apps engineered for the details that separate "functional" from "the one they keep."',
     description:
-      'Most mobile apps fail on the margins — a janky transition, a cold start that takes too long, a permissions flow that loses the user at step two. We build with React Native and native Swift/Kotlin where it matters, and we treat offline handling, push infrastructure, and app-store release engineering as first-class parts of the build, not an afterthought bolted on in week eleven.',
+      'Most mobile apps fail on the margins — a janky transition, a cold start that takes too long, a permissions flow that loses the user at step two. I build with React Native and native Swift/Kotlin where it matters, and I treat offline handling, push infrastructure, and app-store release engineering as first-class parts of the build, not an afterthought bolted on in week eleven.',
     capabilities: [
       'Cross-platform apps with React Native',
       'Native iOS (Swift) and Android (Kotlin) development',
@@ -57,7 +57,7 @@ export const services = [
     summary:
       'Cloud architecture, CI/CD, and infrastructure-as-code on AWS, Azure, and GCP — built so deploys are routine, not events.',
     description:
-      'We design cloud infrastructure the same way we design software: versioned, reviewed, and reproducible. That means Terraform over console clicks, pipelines over manual deploys, and observability that tells you what broke before a customer does. Whether you need a migration off a legacy data center or a Kubernetes platform that a five-person team can actually operate, we build for the operators who inherit it, not just the ones who ship it.',
+      'I design cloud infrastructure the same way I design software: versioned, reviewed, and reproducible. That means Terraform over console clicks, pipelines over manual deploys, and observability that tells you what broke before a customer does. Whether you need a migration off a legacy data center or a Kubernetes platform a lean team can actually operate, I build for the operators who inherit it, not just the ones who ship it.',
     capabilities: [
       'Cloud architecture on AWS, Azure, and Google Cloud',
       'Infrastructure as Code (Terraform, Pulumi)',
@@ -82,7 +82,7 @@ export const services = [
     summary:
       'Application security, infrastructure hardening, and compliance work — adversarial testing done by people who build software, not just scan it.',
     description:
-      'Security work is only useful if it produces fixes, not just findings. Our reviews are done by engineers who read the code and the infrastructure config, not only the output of a scanner. We run penetration tests, architecture reviews, and compliance readiness assessments (SOC 2, HIPAA, ISO 27001) with a report that a development team can actually action in a sprint, ranked by real exploitability rather than CVSS score alone.',
+      'Security work is only useful if it produces fixes, not just findings. I read the code and the infrastructure config myself — not just the output of a scanner — and bring in a specialist I’ve already vetted for deep penetration testing when a project calls for it. Either way, you get architecture reviews and compliance readiness assessments (SOC 2, HIPAA, ISO 27001) in one report your development team can actually action in a sprint, ranked by real exploitability rather than CVSS score alone.',
     capabilities: [
       'Application penetration testing (web, mobile, API)',
       'Cloud infrastructure and configuration security review',
@@ -107,7 +107,7 @@ export const services = [
     summary:
       'Applied ML and LLM systems — from a proof of concept to a model serving real traffic with a rollback plan.',
     description:
-      'We build the parts of AI systems that do not show up in a demo: data pipelines, evaluation harnesses, retrieval infrastructure, and monitoring for drift and cost. That includes traditional ML models, computer vision, and production LLM applications — RAG systems, agents, and fine-tuned models — engineered with the same rigor as any other backend service, because that is what they are.',
+      'I build the parts of AI systems that do not show up in a demo: data pipelines, evaluation harnesses, retrieval infrastructure, and monitoring for drift and cost — myself for the engineering work, and with a specialist I trust brought in for deep model training when a project calls for it. That includes traditional ML models, computer vision, and production LLM applications — RAG systems, agents, and fine-tuned models — engineered with the same rigor as any other backend service, because that is what they are.',
     capabilities: [
       'LLM application development — RAG, agents, and tool use',
       'Model fine-tuning and evaluation harness design',
@@ -132,7 +132,7 @@ export const services = [
     summary:
       'Product design and design systems built around real user workflows — researched, tested, and handed off in a state engineers can actually build.',
     description:
-      'A lot of interface design optimizes for how it looks in a portfolio. We optimize for the twentieth time someone uses it, at 2pm on a Tuesday, trying to finish a task. That means research before wireframes, usability testing before launch, and design systems documented well enough that engineering does not have to guess. We design for web and mobile, and we stay involved through implementation so the shipped product matches the file.',
+      'A lot of interface design optimizes for how it looks in a portfolio. I optimize for the twentieth time someone uses it, at 2pm on a Tuesday, trying to finish a task. That means research before wireframes, usability testing before launch, and design systems documented well enough that engineering does not have to guess. I design for web and mobile, and I stay involved through implementation so the shipped product matches the file.',
     capabilities: [
       'User research and usability testing',
       'Product design — web and mobile, from wireframe to high fidelity',
@@ -157,7 +157,7 @@ export const services = [
     summary:
       'Technology strategy, systems audits, and digital transformation planning grounded in what your team can realistically execute.',
     description:
-      'Strategy work is worthless if it ignores the team that has to run it. We assess your current technology stack, team structure, and delivery process, then build a roadmap sequenced around real constraints — budget, headcount, and risk tolerance — instead of a slide deck of best practices lifted from a different company. Where needed, we stay on to help execute the plan we wrote.',
+      'Strategy work is worthless if it ignores the team that has to run it. I assess your current technology stack, team structure, and delivery process, then build a roadmap sequenced around real constraints — budget, headcount, and risk tolerance — instead of a slide deck of best practices lifted from a different company. Where needed, I stay on to help execute the plan I wrote.',
     capabilities: [
       'Technology stack and systems architecture audits',
       'Digital transformation roadmapping',

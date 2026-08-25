@@ -24,39 +24,38 @@ export const paths = {
   services: '/services/',
   about: '/about/',
   work: '/work/',
-  careers: '/careers/',
   contact: '/contact/',
   service: (slug) => `/services/${slug}/`,
 }
 
 // Rendered on Home as a visible FAQ section and exposed as FAQPage JSON-LD
 // for rich-result eligibility. Every answer restates a claim already made
-// elsewhere on the site (value props, About, Careers, Contact) — no new
-// facts are introduced here.
+// elsewhere on the site (value props, About, Contact) — no new facts are
+// introduced here.
 export const faqs = [
   {
     q: 'How is pricing structured?',
-    a: "Fixed scope, fixed cost. We scope carefully up front so the estimate is a commitment, not an opening offer — the number doesn't move in month two.",
+    a: "Fixed scope, fixed cost. I scope carefully up front so the estimate is a commitment, not an opening offer — the number doesn't move in month two.",
   },
   {
     q: 'Who actually works on my project?',
-    a: 'Senior engineers only — no bench of juniors learning on your invoice. Every engagement is staffed by people who have shipped that category of work before.',
+    a: "Most of the work, I do myself. When a project needs a specialist outside my core stack, I bring in someone from a small network of freelancers and agencies I've already worked with and vetted — but I stay the one point of contact, and I review everything before it reaches you.",
   },
   {
     q: 'Do we own the code and infrastructure after the engagement ends?',
-    a: "Yes — code, infrastructure, credentials, and documentation. Nothing is held hostage in a vendor-only repo when the engagement ends.",
+    a: 'Yes — code, infrastructure, credentials, and documentation. Nothing is held hostage in a vendor-only repo when the engagement ends.',
   },
   {
     q: 'How fast do you respond to a new project inquiry?',
-    a: 'Under one business day. Tell us what you’re building on the contact page and you’ll hear back from an engineer, not a sales queue.',
+    a: 'Under one business day. Tell me what you’re building on the contact page and you’ll hear back from me directly, not a sales queue.',
   },
   {
     q: 'Is webora is a dev remote-first?',
-    a: 'Yes — remote from day one, with no office to eventually mandate a return to. You work directly with the person building your system.',
+    a: "Yes — remote from day one. You work directly with me, the person building or directing your system, wherever you're based.",
   },
   {
     q: 'What disciplines does webora is a dev cover?',
-    a: 'Seven: web development, mobile app development, cloud & DevOps, cybersecurity, AI & machine learning, UI/UX design, and IT consulting — carried by one senior team.',
+    a: "Seven: web development, mobile app development, cloud & DevOps, cybersecurity, AI & machine learning, UI/UX design, and IT consulting — all coordinated by me personally, whether I'm building it myself or directing a vetted specialist for a piece outside my core stack.",
   },
 ]
 
@@ -76,20 +75,20 @@ export const siteRoutes = {
   home: {
     title: 'webora is a dev — Engineering Systems That Hold',
     description:
-      'webora is a dev — full-spectrum technology partner for software, cloud, security, and AI. Senior engineers only, fixed scope, and infrastructure built to last.',
+      'webora is a dev — I plan, build, and deliver software, cloud, security, and AI projects personally or through vetted specialists, with fixed scope and infrastructure built to last.',
     path: paths.home,
     jsonLd: buildFaqJsonLd(faqs),
   },
   services: {
     title: 'Services — webora is a dev',
     description:
-      'Seven full-spectrum engineering disciplines — web, mobile, cloud & DevOps, cybersecurity, AI/ML, UI/UX design, and IT consulting — carried by one senior team.',
+      'Seven full-spectrum engineering disciplines — web, mobile, cloud & DevOps, cybersecurity, AI/ML, UI/UX design, and IT consulting — all coordinated personally by one point of contact.',
     path: paths.services,
   },
   about: {
     title: 'About — webora is a dev',
     description:
-      'webora is a dev started in 2020 as one freelance developer and grew into a full-spectrum technology company without losing the habit of shipping it right.',
+      'webora is a dev started in 2020 as one freelance developer and grew into a full-spectrum practice — built personally or through vetted specialists — without losing the habit of shipping it right.',
     path: paths.about,
   },
   work: {
@@ -98,15 +97,9 @@ export const siteRoutes = {
       'A sample of client work across web, mobile, cloud, security, design, and AI, delivered before webora is a dev had a name.',
     path: paths.work,
   },
-  careers: {
-    title: 'Careers — webora is a dev',
-    description:
-      'Open to collaborate with senior engineers across web, mobile, cloud, security, AI, and design at webora is a dev — a small, founder-led team.',
-    path: paths.careers,
-  },
   contact: {
     title: 'Contact — webora is a dev',
-    description: "Tell us what you're building. webora is a dev replies within one business day.",
+    description: "Tell me what you're building — I reply within one business day.",
     path: paths.contact,
   },
 }

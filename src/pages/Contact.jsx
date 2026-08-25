@@ -24,7 +24,7 @@ export default function Contact() {
       <section className="hero container" style={{ paddingBottom: 'var(--space-4)' }}>
         <div className="hero__label eyebrow">Contact</div>
         <h1 className="type-h1" style={{ maxWidth: '18ch' }}>
-          Tell us what you're building. We'll reply within one business day.
+          Tell me what you're building. I'll reply within one business day.
         </h1>
       </section>
 
@@ -34,9 +34,9 @@ export default function Contact() {
             {submitted ? (
               <div>
                 <div className="eyebrow" style={{ marginBottom: '1rem' }}>Received</div>
-                <h2 className="type-h2">Thanks — that's in an engineer's queue now.</h2>
+                <h2 className="type-h2">Thanks — that's in my queue now.</h2>
                 <p className="type-lede mt-3">
-                  We reply within one business day. If it's urgent, email
+                  I reply within one business day. If it's urgent, email
                   {' '}<a href="mailto:talhasiddiqui433@gmail.com" className="text-link">talhasiddiqui433@gmail.com</a> directly.
                 </p>
               </div>
