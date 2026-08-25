@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { services } from '../data/services.js'
+import { paths } from '../data/seo-content.js'
 
 export default function Footer() {
   const year = new Date().getFullYear()
@@ -12,7 +13,7 @@ export default function Footer() {
           Have a system worth <span style={{ color: 'var(--lime)' }}>building right?</span>
         </h2>
         <div style={{ marginTop: '2rem', display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
-          <Link to="/contact" className="btn btn--accent">Start a project →</Link>
+          <Link to={paths.contact} className="btn btn--accent">Start a project →</Link>
           <a href="mailto:talhasiddiqui433@gmail.com" className="btn btn--ghost">talhasiddiqui433@gmail.com</a>
         </div>
       </div>
@@ -21,16 +22,16 @@ export default function Footer() {
         <div className="footer-col">
           <div className="footer-col__title">Services</div>
           {services.slice(0, 5).map((s) => (
-            <Link key={s.slug} to={`/services/${s.slug}`}>{s.name}</Link>
+            <Link key={s.slug} to={paths.service(s.slug)}>{s.name}</Link>
           ))}
-          <Link to="/services">All services →</Link>
+          <Link to={paths.services}>All services →</Link>
         </div>
         <div className="footer-col">
           <div className="footer-col__title">Company</div>
-          <Link to="/about">About</Link>
-          <Link to="/work">Work</Link>
-          <Link to="/careers">Careers</Link>
-          <Link to="/contact">Contact</Link>
+          <Link to={paths.about}>About</Link>
+          <Link to={paths.work}>Work</Link>
+          <Link to={paths.careers}>Careers</Link>
+          <Link to={paths.contact}>Contact</Link>
         </div>
         <div className="footer-col">
           <div className="footer-col__title">Contact</div>

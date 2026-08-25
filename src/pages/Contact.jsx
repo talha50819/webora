@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { services } from '../data/services.js'
 import { useSEO } from '../hooks/useSEO.js'
-import { siteRoutes } from '../data/seo-content.js'
+import { siteRoutes, paths } from '../data/seo-content.js'
 
 const FORM_ENDPOINT = 'https://formspree.io/talhasiddiqui433@gmail.com'
 
@@ -47,7 +47,7 @@ export default function Contact() {
                 method="POST"
               >
                 <input type="hidden" name="_subject" value="New project inquiry — webora is a dev" />
-                <input type="hidden" name="_next" value={`${typeof window !== 'undefined' ? window.location.origin : ''}/contact?sent=true`} />
+                <input type="hidden" name="_next" value={`${typeof window !== 'undefined' ? window.location.origin : ''}${paths.contact}?sent=true`} />
 
                 <div className="grid-2" style={{ gap: '1rem' }}>
                   <div className="form-field">

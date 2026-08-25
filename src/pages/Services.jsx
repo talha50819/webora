@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import { services } from '../data/services.js'
 import { useSEO } from '../hooks/useSEO.js'
-import { siteRoutes } from '../data/seo-content.js'
+import { siteRoutes, paths } from '../data/seo-content.js'
 
 export default function Services() {
   useSEO(siteRoutes.services)
@@ -23,7 +23,7 @@ export default function Services() {
         <div className="container">
           <div className="service-list">
             {services.map((s) => (
-              <Link to={`/services/${s.slug}`} className="service-row" key={s.slug}>
+              <Link to={paths.service(s.slug)} className="service-row" key={s.slug}>
                 <span className="index-number">{s.index}</span>
                 <span>
                   <span className="service-row__name">{s.name}</span>

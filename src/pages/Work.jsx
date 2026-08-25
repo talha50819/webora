@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import { projects } from '../data/projects.js'
 import { useSEO } from '../hooks/useSEO.js'
-import { siteRoutes } from '../data/seo-content.js'
+import { siteRoutes, paths } from '../data/seo-content.js'
 
 export default function Work() {
   useSEO(siteRoutes.work)
@@ -45,7 +45,7 @@ export default function Work() {
       <section className="section" style={{ borderBottom: 'none' }}>
         <div className="container cta-band">
           <h2 className="type-h2" style={{ maxWidth: '18ch' }}>Want references from a similar engagement?</h2>
-          <Link to="/contact" className="btn btn--solid">Request case studies →</Link>
+          <Link to={paths.contact} className="btn btn--solid">Request case studies →</Link>
         </div>
       </section>
     </>

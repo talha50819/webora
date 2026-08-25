@@ -1,7 +1,7 @@
 import { useParams, Link, Navigate } from 'react-router-dom'
 import { services, getServiceBySlug } from '../data/services.js'
 import { useSEO, SITE_NAME } from '../hooks/useSEO.js'
-import { buildServiceSeo } from '../data/seo-content.js'
+import { buildServiceSeo, paths } from '../data/seo-content.js'
 
 export default function ServiceDetail() {
   const { slug } = useParams()
@@ -11,12 +11,12 @@ export default function ServiceDetail() {
   useSEO(
     seo || {
       title: `Service not found — ${SITE_NAME}`,
-      path: `/services/${slug}`,
+      path: paths.service(slug),
       noindex: true,
     }
   )
 
-  if (!service) return <Navigate to="/services" replace />
+  if (!service) return <Navigate to={paths.services} replace />
 
   const currentIdx = services.findIndex((s) => s.slug === slug)
   const next = services[(currentIdx + 1) % services.length]
@@ -28,9 +28,9 @@ export default function ServiceDetail() {
           className="type-mono"
           style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap', color: 'var(--ink-soft)', listStyle: 'none', padding: 0, margin: 0, fontSize: '0.85rem' }}
         >
-          <li><Link to="/" style={{ color: 'inherit' }}>Home</Link></li>
+          <li><Link to={paths.home} style={{ color: 'inherit' }}>Home</Link></li>
           <li aria-hidden="true">/</li>
-          <li><Link to="/services" style={{ color: 'inherit' }}>Services</Link></li>
+          <li><Link to={paths.services} style={{ color: 'inherit' }}>Services</Link></li>
           <li aria-hidden="true">/</li>
           <li aria-current="page" style={{ color: 'var(--ink)' }}>{service.name}</li>
         </ol>
@@ -48,7 +48,7 @@ export default function ServiceDetail() {
               <span className="tag" key={t}>{t}</span>
             ))}
           </div>
-          <Link to="/contact" className="btn btn--accent">Start this project →</Link>
+          <Link to={paths.contact} className="btn btn--accent">Start this project →</Link>
         </div>
       </section>
 
@@ -93,11 +93,11 @@ export default function ServiceDetail() {
         <div className="container cta-band">
           <div>
             <div className="type-mono" style={{ color: 'var(--ink-soft)', marginBottom: '0.5rem' }}>Next service</div>
-            <Link to={`/services/${next.slug}`} className="type-h2" style={{ display: 'block' }}>
+            <Link to={paths.service(next.slug)} className="type-h2" style={{ display: 'block' }}>
               {next.name} →
             </Link>
           </div>
-          <Link to="/contact" className="btn btn--solid">Talk to an engineer →</Link>
+          <Link to={paths.contact} className="btn btn--solid">Talk to an engineer →</Link>
         </div>
       </section>
     </>

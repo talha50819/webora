@@ -1,12 +1,13 @@
 import { useState } from 'react'
 import { NavLink } from 'react-router-dom'
+import { paths } from '../data/seo-content.js'
 
 const links = [
-  { to: '/services', label: 'Services' },
-  { to: '/work', label: 'Work' },
-  { to: '/about', label: 'About' },
-  { to: '/careers', label: 'Careers' },
-  { to: '/contact', label: 'Contact' },
+  { to: paths.services, label: 'Services' },
+  { to: paths.work, label: 'Work' },
+  { to: paths.about, label: 'About' },
+  { to: paths.careers, label: 'Careers' },
+  { to: paths.contact, label: 'Contact' },
 ]
 
 export default function Header() {
@@ -32,7 +33,7 @@ export default function Header() {
               </NavLink>
             ))}
           </div>
-          <NavLink to="/contact" className="btn btn--solid">
+          <NavLink to={paths.contact} className="btn btn--solid">
             Start a Project
           </NavLink>
           <button
@@ -55,7 +56,7 @@ export default function Header() {
               {link.label}
             </NavLink>
           ))}
-          <NavLink to="/contact" onClick={() => setOpen(false)}>
+          <NavLink to={paths.contact} onClick={() => setOpen(false)}>
             Start a Project →
           </NavLink>
         </div>

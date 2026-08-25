@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 import Marquee from '../components/Marquee.jsx'
 import { services } from '../data/services.js'
 import { useSEO } from '../hooks/useSEO.js'
-import { siteRoutes, faqs } from '../data/seo-content.js'
+import { siteRoutes, faqs, paths } from '../data/seo-content.js'
 
 const values = [
   {
@@ -37,8 +37,8 @@ export default function Home() {
         </p>
         <div className="hero__footer">
           <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
-            <Link to="/contact" className="btn btn--accent">Start a project →</Link>
-            <Link to="/services" className="btn btn--ghost">View services</Link>
+            <Link to={paths.contact} className="btn btn--accent">Start a project →</Link>
+            <Link to={paths.services} className="btn btn--ghost">View services</Link>
           </div>
         </div>
       </section>
@@ -77,7 +77,7 @@ export default function Home() {
           </h2>
           <div className="service-list">
             {services.map((s) => (
-              <Link to={`/services/${s.slug}`} className="service-row" key={s.slug}>
+              <Link to={paths.service(s.slug)} className="service-row" key={s.slug}>
                 <span className="index-number">{s.index}</span>
                 <span>
                   <span className="service-row__name">{s.name}</span>
@@ -135,7 +135,7 @@ export default function Home() {
           <h2 className="type-h2" style={{ maxWidth: '18ch' }}>
             Tell us what's breaking. We'll tell you what it takes to fix it.
           </h2>
-          <Link to="/contact" className="btn btn--solid">Get a technical audit →</Link>
+          <Link to={paths.contact} className="btn btn--solid">Get a technical audit →</Link>
         </div>
       </section>
     </>

@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import { useSEO } from '../hooks/useSEO.js'
-import { siteRoutes } from '../data/seo-content.js'
+import { siteRoutes, paths } from '../data/seo-content.js'
 
 const timeline = [
   ['2020', 'Muhammad Talha Siddiqui starts out as an independent freelance developer, taking on web and software contracts solo.'],
@@ -106,7 +106,7 @@ export default function About() {
       <section className="section" style={{ borderBottom: 'none' }}>
         <div className="container cta-band">
           <h2 className="type-h2" style={{ maxWidth: '18ch' }}>Want to see how we'd staff your project?</h2>
-          <Link to="/contact" className="btn btn--solid">Get in touch →</Link>
+          <Link to={paths.contact} className="btn btn--solid">Get in touch →</Link>
         </div>
       </section>
     </>

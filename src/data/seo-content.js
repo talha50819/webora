@@ -13,6 +13,22 @@ export const SITE_URL = 'https://webora.is-a.dev'
 export const SITE_NAME = 'webora is a dev'
 export const DEFAULT_OG_IMAGE = `${SITE_URL}/og-image.png`
 
+// Netlify serves prerendered directory-index files (dist/about/index.html
+// etc.) under their trailing-slash form and issues a real 301 from the
+// no-slash form to it (its own "pretty URL" canonicalization). Every path
+// below — used for canonical tags, the sitemap, JSON-LD, and every internal
+// <Link>/<NavLink> in the app — matches that trailing-slash form so no
+// internal link, canonical tag, or sitemap entry ever needs that redirect.
+export const paths = {
+  home: '/',
+  services: '/services/',
+  about: '/about/',
+  work: '/work/',
+  careers: '/careers/',
+  contact: '/contact/',
+  service: (slug) => `/services/${slug}/`,
+}
+
 // Rendered on Home as a visible FAQ section and exposed as FAQPage JSON-LD
 // for rich-result eligibility. Every answer restates a claim already made
 // elsewhere on the site (value props, About, Careers, Contact) — no new
@@ -61,46 +77,47 @@ export const siteRoutes = {
     title: 'webora is a dev — Engineering Systems That Hold',
     description:
       'webora is a dev — full-spectrum technology partner for software, cloud, security, and AI. Senior engineers only, fixed scope, and infrastructure built to last.',
-    path: '/',
+    path: paths.home,
     jsonLd: buildFaqJsonLd(faqs),
   },
   services: {
     title: 'Services — webora is a dev',
     description:
       'Seven full-spectrum engineering disciplines — web, mobile, cloud & DevOps, cybersecurity, AI/ML, UI/UX design, and IT consulting — carried by one senior team.',
-    path: '/services',
+    path: paths.services,
   },
   about: {
     title: 'About — webora is a dev',
     description:
       'webora is a dev started in 2020 as one freelance developer and grew into a full-spectrum technology company without losing the habit of shipping it right.',
-    path: '/about',
+    path: paths.about,
   },
   work: {
     title: 'Selected Work — webora is a dev',
     description:
       'A sample of client work across web, mobile, cloud, security, design, and AI, delivered before webora is a dev had a name.',
-    path: '/work',
+    path: paths.work,
   },
   careers: {
     title: 'Careers — webora is a dev',
     description:
       'Open to collaborate with senior engineers across web, mobile, cloud, security, AI, and design at webora is a dev — a small, founder-led team.',
-    path: '/careers',
+    path: paths.careers,
   },
   contact: {
     title: 'Contact — webora is a dev',
     description: "Tell us what you're building. webora is a dev replies within one business day.",
-    path: '/contact',
+    path: paths.contact,
   },
 }
 
 export function buildServiceSeo(service) {
   if (!service) return null
+  const path = paths.service(service.slug)
   return {
     title: `${service.name} — ${SITE_NAME}`,
     description: service.summary,
-    path: `/services/${service.slug}`,
+    path,
     jsonLd: [
       {
         '@context': 'https://schema.org',
@@ -109,15 +126,15 @@ export function buildServiceSeo(service) {
         description: service.summary,
         provider: { '@type': 'Organization', name: SITE_NAME, url: `${SITE_URL}/` },
         areaServed: 'Worldwide',
-        url: `${SITE_URL}/services/${service.slug}`,
+        url: `${SITE_URL}${path}`,
       },
       {
         '@context': 'https://schema.org',
         '@type': 'BreadcrumbList',
         itemListElement: [
-          { '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE_URL}/` },
-          { '@type': 'ListItem', position: 2, name: 'Services', item: `${SITE_URL}/services` },
-          { '@type': 'ListItem', position: 3, name: service.name, item: `${SITE_URL}/services/${service.slug}` },
+          { '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE_URL}${paths.home}` },
+          { '@type': 'ListItem', position: 2, name: 'Services', item: `${SITE_URL}${paths.services}` },
+          { '@type': 'ListItem', position: 3, name: service.name, item: `${SITE_URL}${path}` },
         ],
       },
     ],

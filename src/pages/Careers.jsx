@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import { roles } from '../data/roles.js'
 import { useSEO } from '../hooks/useSEO.js'
-import { siteRoutes } from '../data/seo-content.js'
+import { siteRoutes, paths } from '../data/seo-content.js'
 
 const perks = [
   { title: 'Remote-first, always', desc: 'webora is a dev — remote from day one, with no office to eventually mandate a return to.' },
@@ -62,7 +62,7 @@ export default function Careers() {
       <section className="section" style={{ borderBottom: 'none' }}>
         <div className="container cta-band">
           <h2 className="type-h2" style={{ maxWidth: '18ch' }}>Think you'd be a good fit?</h2>
-          <Link to="/contact" className="btn btn--solid">Introduce yourself →</Link>
+          <Link to={paths.contact} className="btn btn--solid">Introduce yourself →</Link>
         </div>
       </section>
     </>
