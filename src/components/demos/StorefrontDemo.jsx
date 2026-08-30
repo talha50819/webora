@@ -1,11 +1,22 @@
 import { useState } from 'react'
+import { IconSearch, IconCart, IconStar } from './icons.jsx'
 
 const PRODUCTS = [
-  { id: 'tote', name: 'Canvas Tote', price: 38, img: 'aurelie-tote-v2' },
-  { id: 'shirt', name: 'Linen Shirt', price: 64, img: 'aurelie-shirt-v2' },
-  { id: 'mug', name: 'Ceramic Mug', price: 22, img: 'aurelie-mug-v2' },
-  { id: 'scarf', name: 'Wool Scarf', price: 48, img: 'aurelie-scarf-v2' },
+  { id: 'tote', name: 'Canvas Tote', price: 38, rating: 5, reviews: 128, img: 'aurelie-tote-v3' },
+  { id: 'shirt', name: 'Linen Shirt', price: 64, rating: 4, reviews: 76, img: 'aurelie-shirt-v3' },
+  { id: 'mug', name: 'Ceramic Mug', price: 22, rating: 5, reviews: 214, img: 'aurelie-mug-v3' },
+  { id: 'scarf', name: 'Wool Scarf', price: 48, rating: 4, reviews: 54, img: 'aurelie-scarf-v3' },
 ]
+
+function Stars({ rating }) {
+  return (
+    <span className="dt-stars">
+      {Array.from({ length: 5 }, (_, i) => (
+        <IconStar key={i} filled={i < rating} />
+      ))}
+    </span>
+  )
+}
 
 export default function StorefrontDemo() {
   const [cart, setCart] = useState({})
@@ -20,75 +31,95 @@ export default function StorefrontDemo() {
     setCart((c) => ({ ...c, [id]: (c[id] || 0) + 1 }))
   }
 
+  function removeOne(id) {
+    setCart((c) => ({ ...c, [id]: Math.max(0, (c[id] || 0) - 1) }))
+  }
+
   return (
     <div className="demo-theme--storefront dt-shell">
-      <div className="dt-eyebrow">Aurelie — page load</div>
-      <div style={{ display: 'flex', gap: '2rem', marginBottom: '1.5rem' }}>
-        <div>
-          <div className="dt-stat-value">1.5s</div>
-          <div className="dt-stat-label">After rebuild</div>
+      <nav className="dt-topnav">
+        <div className="dt-topnav__brand">Aurelie</div>
+        <ul className="dt-topnav__links">
+          <li>Shop</li>
+          <li>Journal</li>
+          <li>About</li>
+        </ul>
+        <div className="dt-topnav__actions">
+          <button type="button" className="dt-icon-btn" aria-label="Search"><IconSearch /></button>
+          <button type="button" className="dt-icon-btn" aria-label="Cart">
+            <IconCart />
+            {count > 0 && <span className="dt-icon-btn__badge">{count}</span>}
+          </button>
         </div>
-        <div>
-          <div className="dt-stat-value" style={{ color: 'var(--dt-accent)' }}>−75%</div>
-          <div className="dt-stat-label">Faster than before</div>
+      </nav>
+
+      <div className="dt-hero">
+        <img src="https://picsum.photos/seed/aurelie-hero-v2/1200/500" alt="Aurelie fall collection" />
+        <div className="dt-hero__content">
+          <div className="dt-hero__eyebrow">Rebuilt storefront · 1.5s load</div>
+          <div className="dt-hero__title">New arrivals, made to last a decade.</div>
+          <div className="dt-hero__sub">Page loads dropped from 6.0s to 1.5s after the headless rebuild — 75% faster, and it shows in conversion.</div>
         </div>
       </div>
 
-      <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', marginBottom: '0.5rem' }}>
-        <span className="dt-label" style={{ width: '3.5rem', margin: 0 }}>Before</span>
-        <div className="dt-bar-track"><div className="dt-bar-fill" style={{ width: '100%', opacity: 0.4 }} /></div>
-        <span className="dt-tag">6.0s</span>
-      </div>
-      <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', marginBottom: '1.75rem' }}>
-        <span className="dt-label" style={{ width: '3.5rem', margin: 0 }}>After</span>
-        <div className="dt-bar-track"><div className="dt-bar-fill" style={{ width: '25%' }} /></div>
-        <span className="dt-tag">1.5s</span>
-      </div>
-
-      <div className="dt-eyebrow">Shop the collection</div>
-      <div className="dt-grid-4" style={{ marginBottom: '1.25rem' }}>
-        {PRODUCTS.map((p) => (
-          <div className="dt-card" key={p.id} style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
-            <img
-              src={`https://picsum.photos/seed/${p.img}/400/400`}
-              alt={p.name}
-              loading="lazy"
-              style={{ aspectRatio: '1', width: '100%', objectFit: 'cover', borderRadius: 'var(--dt-radius-sm)' }}
-            />
-            <div className="dt-heading" style={{ fontSize: '0.95rem' }}>{p.name}</div>
-            <div style={{ color: 'var(--dt-fg-soft)' }}>${p.price}</div>
-            <button type="button" className="dt-btn dt-btn--ghost" style={{ justifyContent: 'center', fontSize: '0.75rem' }} onClick={() => addToCart(p.id)}>
-              Add to bag
-            </button>
-          </div>
-        ))}
-      </div>
-
-      <div className="dt-card">
-        {items.length === 0 ? (
-          <p style={{ color: 'var(--dt-fg-soft)' }}>Your bag is empty — add something above.</p>
-        ) : checkedOut ? (
-          <p>✓ Order placed — {count} item{count > 1 ? 's' : ''}, ${total}. (Demo only, nothing was charged.)</p>
-        ) : (
-          <>
-            {items.map(([id, qty]) => {
-              const p = PRODUCTS.find((x) => x.id === id)
-              return (
-                <div className="dt-row" key={id}>
-                  <span>{p.name} × {qty}</span>
-                  <span>${p.price * qty}</span>
+      <div className="dt-shop-layout">
+        <div>
+          <div className="dt-eyebrow">Shop the collection</div>
+          <div className="dt-grid-2">
+            {PRODUCTS.map((p) => (
+              <div className="dt-card dt-product" key={p.id}>
+                <div className="dt-product__img-wrap">
+                  <img src={`https://picsum.photos/seed/${p.img}/500/500`} alt={p.name} loading="lazy" />
                 </div>
-              )
-            })}
-            <div className="dt-row" style={{ borderBottom: 'none', fontWeight: 700, paddingBottom: 0 }}>
-              <span>Total</span>
-              <span>${total}</span>
-            </div>
-            <button type="button" className="dt-btn" style={{ marginTop: '0.9rem' }} onClick={() => setCheckedOut(true)}>
-              Checkout →
-            </button>
-          </>
-        )}
+                <div className="dt-heading" style={{ fontSize: '0.95rem', marginBottom: 0 }}>{p.name}</div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem' }}>
+                  <Stars rating={p.rating} />
+                  <span className="dt-stat-label" style={{ marginBottom: 0 }}>({p.reviews})</span>
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: '0.2rem' }}>
+                  <span style={{ fontWeight: 700 }}>${p.price}</span>
+                  <button type="button" className="dt-btn dt-btn--ghost" style={{ fontSize: '0.72rem', padding: '0.5rem 0.9rem' }} onClick={() => addToCart(p.id)}>
+                    Add to bag
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="dt-shop-layout__cart">
+          <div className="dt-card">
+            <div className="dt-heading" style={{ fontSize: '0.95rem' }}>Your bag</div>
+            {items.length === 0 ? (
+              <p style={{ color: 'var(--dt-fg-soft)', fontSize: '0.85rem' }}>Empty — add something from the collection.</p>
+            ) : checkedOut ? (
+              <p style={{ fontSize: '0.88rem' }}>✓ Order placed — {count} item{count > 1 ? 's' : ''}, ${total}. (Demo only, nothing was charged.)</p>
+            ) : (
+              <>
+                {items.map(([id, qty]) => {
+                  const p = PRODUCTS.find((x) => x.id === id)
+                  return (
+                    <div className="dt-row" key={id} style={{ alignItems: 'center' }}>
+                      <span style={{ fontSize: '0.85rem' }}>{p.name}</span>
+                      <span style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                        <button type="button" className="dt-icon-btn" style={{ fontSize: '0.9rem' }} onClick={() => removeOne(id)} aria-label={`Remove one ${p.name}`}>−</button>
+                        <span style={{ fontSize: '0.82rem', minWidth: '1.2rem', textAlign: 'center' }}>{qty}</span>
+                        <button type="button" className="dt-icon-btn" style={{ fontSize: '0.9rem' }} onClick={() => addToCart(id)} aria-label={`Add one ${p.name}`}>+</button>
+                      </span>
+                    </div>
+                  )
+                })}
+                <div className="dt-row" style={{ borderBottom: 'none', fontWeight: 700, paddingBottom: 0 }}>
+                  <span>Total</span>
+                  <span>${total}</span>
+                </div>
+                <button type="button" className="dt-btn" style={{ marginTop: '1rem', width: '100%', justifyContent: 'center' }} onClick={() => setCheckedOut(true)}>
+                  Checkout →
+                </button>
+              </>
+            )}
+          </div>
+        </div>
       </div>
     </div>
   )
