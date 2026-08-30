@@ -6,6 +6,7 @@ export const projects = [
     desc: 'Replaced a slow, plugin-heavy storefront with a headless build ahead of the brand’s first funding pitch — page load cut from 6s to under 1.5s.',
     tags: ['Web Development'],
     demo: 'storefront',
+    demoLabel: 'aurelieshop.com',
   },
   {
     slug: 'driver-dispatch-app',
@@ -14,6 +15,7 @@ export const projects = [
     desc: 'Replaced a spreadsheet-based dispatch process with a driver-facing mobile app tracking deliveries in real time.',
     tags: ['Mobile App Development'],
     demo: 'dispatch',
+    demoLabel: 'fleetline.app/dispatch',
   },
   {
     slug: 'cloud-cost-teardown',
@@ -22,6 +24,7 @@ export const projects = [
     desc: 'Migrated an over-provisioned VPS setup to right-sized AWS infrastructure, cutting monthly hosting cost by roughly 70%.',
     tags: ['Cloud & DevOps'],
     demo: 'cloudcost',
+    demoLabel: 'ledger.cloud/reports',
   },
   {
     slug: 'security-review',
@@ -30,6 +33,7 @@ export const projects = [
     desc: 'Ran a pre-seed fintech’s first application security review so it could pass its first enterprise customer’s vendor questionnaire.',
     tags: ['Cybersecurity'],
     demo: 'security',
+    demoLabel: 'redteam.report',
   },
   {
     slug: 'booking-flow-redesign',
@@ -38,6 +42,7 @@ export const projects = [
     desc: 'Simplified a five-step booking flow to two steps, cutting abandoned bookings roughly in half.',
     tags: ['UI/UX Design'],
     demo: 'booking',
+    demoLabel: 'petalandstone.studio/book',
   },
   {
     slug: 'course-recommendation-feature',
@@ -46,6 +51,7 @@ export const projects = [
     desc: 'Shipped a recommendation feature built on an off-the-shelf embedding model — no dedicated data team or infrastructure required.',
     tags: ['AI & Machine Learning'],
     demo: 'recommend',
+    demoLabel: 'lernly.app/courses',
   },
 ]
 

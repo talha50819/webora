@@ -13,11 +13,12 @@ const INITIAL_ORDERS = [
 ]
 
 const STATUS_LABEL = { idle: 'Idle', enroute: 'En route', delivered: 'Delivered' }
+const DOT_COLOR = { idle: 'var(--dt-fg-soft)', enroute: 'var(--dt-accent)', delivered: '#4ade80' }
 
 export default function DispatchDemo() {
   const [drivers, setDrivers] = useState(INITIAL_DRIVERS)
   const [orders, setOrders] = useState(INITIAL_ORDERS)
-  const [assign, setAssign] = useState({}) // orderId -> driverId picked in the dropdown
+  const [assign, setAssign] = useState({})
   const intervalsRef = useRef(new Map())
 
   useEffect(() => {
@@ -33,13 +34,7 @@ export default function DispatchDemo() {
     setDrivers((ds) => ds.map((d) => (d.id === driverId ? { ...d, status: 'enroute', delivery: orderId, progress: 0 } : d)))
 
     const interval = setInterval(() => {
-      setDrivers((ds) =>
-        ds.map((d) => {
-          if (d.id !== driverId) return d
-          const next = Math.min(100, d.progress + 20)
-          return { ...d, progress: next }
-        }),
-      )
+      setDrivers((ds) => ds.map((d) => (d.id === driverId ? { ...d, progress: Math.min(100, d.progress + 20) } : d)))
     }, 500)
     intervalsRef.current.set(driverId, interval)
 
@@ -53,65 +48,54 @@ export default function DispatchDemo() {
   const idleDrivers = drivers.filter((d) => d.status === 'idle')
 
   return (
-    <div>
-      <div className="eyebrow" style={{ marginBottom: '0.75rem' }}>Drivers</div>
-      <div className="demo-list" style={{ marginBottom: 'var(--space-3)' }}>
+    <div className="demo-theme--dispatch dt-shell">
+      <div className="dt-eyebrow">Fleetline — live board</div>
+
+      <div className="dt-grid-3" style={{ marginBottom: '1.5rem' }}>
         {drivers.map((d) => (
-          <div className="demo-list-row" key={d.id}>
-            <span>
-              <span className={`demo-driver-dot demo-driver-dot--${d.status === 'enroute' ? 'enroute' : d.status === 'delivered' ? 'delivered' : 'idle'}`} />
-              {d.name}
-            </span>
-            <span className="type-mono" style={{ fontSize: '0.78rem' }}>
-              {STATUS_LABEL[d.status]}{d.delivery ? ` — ${d.delivery}` : ''}
-            </span>
+          <div className="dt-card" key={d.id}>
+            <span className="dt-dot" style={{ background: DOT_COLOR[d.status] }} />
+            <span style={{ fontWeight: 700 }}>{d.name}</span>
+            <div className="dt-stat-label" style={{ marginTop: '0.5rem' }}>
+              {STATUS_LABEL[d.status]}{d.delivery ? ` · ${d.delivery}` : ''}
+            </div>
           </div>
         ))}
       </div>
 
-      <div className="eyebrow" style={{ marginBottom: '0.75rem' }}>Deliveries (try it)</div>
-      <div className="demo-list">
-        {orders.map((o) => (
-          <div className="demo-list-row" key={o.id} style={{ flexDirection: 'column', alignItems: 'stretch', gap: '0.5rem' }}>
-            <div className="demo-list-row" style={{ border: 'none', padding: 0 }}>
-              <span className="type-mono">{o.id} → {o.dest}</span>
-              {o.status === 'pending' && (
-                <div style={{ display: 'flex', gap: '0.5rem' }}>
-                  <select
-                    value={assign[o.id] || ''}
-                    onChange={(e) => setAssign((a) => ({ ...a, [o.id]: e.target.value }))}
-                    style={{ border: 'var(--border)', padding: '0.4rem 0.6rem', fontFamily: 'var(--font-mono)', fontSize: '0.75rem', background: 'transparent' }}
-                  >
-                    <option value="">Assign driver…</option>
-                    {idleDrivers.map((d) => (
-                      <option key={d.id} value={d.id}>{d.name}</option>
-                    ))}
-                  </select>
-                  <button
-                    type="button"
-                    className="btn btn--solid"
-                    style={{ fontSize: '0.72rem', padding: '0.5rem 0.9rem' }}
-                    disabled={!assign[o.id]}
-                    onClick={() => dispatch(o.id)}
-                  >
-                    Dispatch
-                  </button>
-                </div>
-              )}
-              {o.status === 'enroute' && <span className="demo-badge demo-badge--medium">En route</span>}
-              {o.status === 'delivered' && <span className="demo-badge demo-badge--fixed">Delivered</span>}
-            </div>
-            {o.status === 'enroute' && (
-              <div className="demo-progress-track">
-                <div
-                  className="demo-progress-fill"
-                  style={{ width: `${drivers.find((d) => d.id === o.driverId)?.progress || 0}%` }}
-                />
+      <div className="dt-eyebrow">Deliveries</div>
+      {orders.map((o) => (
+        <div className="dt-card" key={o.id} style={{ marginBottom: '0.6rem' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '0.6rem' }}>
+            <span>{o.id} → {o.dest}</span>
+            {o.status === 'pending' && (
+              <div style={{ display: 'flex', gap: '0.5rem' }}>
+                <select
+                  className="dt-select"
+                  style={{ width: 'auto' }}
+                  value={assign[o.id] || ''}
+                  onChange={(e) => setAssign((a) => ({ ...a, [o.id]: e.target.value }))}
+                >
+                  <option value="">Assign driver…</option>
+                  {idleDrivers.map((d) => (
+                    <option key={d.id} value={d.id}>{d.name}</option>
+                  ))}
+                </select>
+                <button type="button" className="dt-btn" style={{ fontSize: '0.75rem', padding: '0.6rem 1rem' }} disabled={!assign[o.id]} onClick={() => dispatch(o.id)}>
+                  Dispatch
+                </button>
               </div>
             )}
+            {o.status === 'enroute' && <span className="dt-badge" style={{ background: 'var(--dt-tag-bg)', color: 'var(--dt-accent)' }}>En route</span>}
+            {o.status === 'delivered' && <span className="dt-badge" style={{ background: '#173324', color: '#4ade80' }}>Delivered</span>}
           </div>
-        ))}
-      </div>
+          {o.status === 'enroute' && (
+            <div className="dt-bar-track" style={{ height: '0.4rem', marginTop: '0.7rem' }}>
+              <div className="dt-bar-fill" style={{ width: `${drivers.find((d) => d.id === o.driverId)?.progress || 0}%` }} />
+            </div>
+          )}
+        </div>
+      ))}
     </div>
   )
 }

@@ -793,105 +793,185 @@ h1, h2, h3, h4 {
   color: var(--ink-soft);
   margin-left: auto;
 }
-.demo-frame__body { padding: var(--space-3) var(--space-4); }
+.demo-frame__body { padding: 0; }
 
-.demo-stats { display: flex; flex-wrap: wrap; gap: var(--space-4); margin-bottom: var(--space-3); }
-.demo-stat__value { font-family: var(--font-display); font-weight: 700; font-size: 2rem; line-height: 1; }
-.demo-stat__label {
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
+/* --------------------------------------------------------------
+   Themeable "dt-" (demo-theme) component kit.
+   Every rule below reads from --dt-* custom properties instead of the
+   site's own tokens (--paper/--ink/--accent/...). Each .demo-theme--*
+   block further down sets those properties to a completely different
+   palette/shape/type language, so the six portfolio demos read as six
+   different products living inside the same neutral device frame —
+   not six reskins of webora.is-a.dev itself.
+   -------------------------------------------------------------- */
+.dt-shell {
+  background: var(--dt-bg);
+  color: var(--dt-fg);
+  font-family: var(--dt-font);
+  padding: var(--dt-pad, 1.75rem);
+}
+.dt-eyebrow {
+  font-family: var(--dt-font-mono);
+  font-size: 0.68rem;
   text-transform: uppercase;
-  color: var(--ink-soft);
-  letter-spacing: 0.05em;
+  letter-spacing: 0.1em;
+  color: var(--dt-fg-soft);
+  margin-bottom: 0.7rem;
+  font-weight: 600;
 }
-
-.demo-bar-row { display: flex; align-items: center; gap: var(--space-2); margin-bottom: 0.6rem; }
-.demo-bar-row__label { width: 7rem; font-family: var(--font-mono); font-size: 0.75rem; flex-shrink: 0; }
-.demo-bar-track { flex: 1; height: 1.4rem; background: var(--paper-dim); border: var(--border); }
-.demo-bar-fill { height: 100%; background: var(--accent); transition: width 0.5s ease; }
-.demo-bar-fill--lime { background: var(--lime); }
-.demo-bar-row__value { font-family: var(--font-mono); font-size: 0.8rem; width: 3.5rem; text-align: right; flex-shrink: 0; }
-
-.demo-list { border-top: var(--border); }
-.demo-list-row {
-  display: flex;
-  justify-content: space-between;
+.dt-heading { font-family: var(--dt-font-display); font-weight: 800; font-size: 1.15rem; margin-bottom: 0.4rem; }
+.dt-card {
+  background: var(--dt-card);
+  border: var(--dt-border);
+  border-radius: var(--dt-radius);
+  box-shadow: var(--dt-shadow, none);
+  padding: 1rem;
+}
+.dt-btn {
+  display: inline-flex;
   align-items: center;
-  padding: var(--space-2) 0;
-  border-bottom: var(--border);
-  gap: var(--space-2);
-  flex-wrap: wrap;
+  gap: 0.4rem;
+  font-family: var(--dt-font);
+  font-weight: 700;
+  font-size: 0.85rem;
+  padding: 0.7rem 1.3rem;
+  border-radius: var(--dt-radius-btn, var(--dt-radius));
+  border: 2px solid var(--dt-accent);
+  background: var(--dt-accent);
+  color: var(--dt-accent-ink);
+  cursor: pointer;
+  transition: transform 0.15s ease, opacity 0.15s ease;
 }
-
-.demo-badge {
-  font-family: var(--font-mono);
+.dt-btn:hover { opacity: 0.88; }
+.dt-btn:disabled { opacity: 0.35; cursor: not-allowed; }
+.dt-btn--ghost { background: transparent; color: var(--dt-fg); border: var(--dt-border); }
+.dt-tag {
+  display: inline-block;
+  font-family: var(--dt-font-mono);
+  font-size: 0.66rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  padding: 0.28rem 0.6rem;
+  border-radius: var(--dt-radius-sm, var(--dt-radius));
+  background: var(--dt-tag-bg);
+  color: var(--dt-tag-fg);
+}
+.dt-badge {
+  font-family: var(--dt-font-mono);
+  font-size: 0.66rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 0.28rem 0.6rem;
+  border-radius: var(--dt-radius-sm, var(--dt-radius));
+  white-space: nowrap;
+}
+.dt-input, .dt-select {
+  width: 100%;
+  padding: 0.7rem 0.9rem;
+  border-radius: var(--dt-radius-sm, var(--dt-radius));
+  border: var(--dt-border);
+  background: var(--dt-card);
+  color: var(--dt-fg);
+  font-family: var(--dt-font);
+  font-size: 0.9rem;
+}
+.dt-input:focus, .dt-select:focus { outline: 2px solid var(--dt-accent); outline-offset: 1px; }
+.dt-label {
+  display: block;
+  font-family: var(--dt-font-mono);
   font-size: 0.68rem;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  padding: 0.25rem 0.55rem;
-  font-weight: 700;
-  white-space: nowrap;
+  color: var(--dt-fg-soft);
+  margin-bottom: 0.4rem;
 }
-.demo-badge--critical { background: var(--accent); color: var(--accent-ink); }
-.demo-badge--high { background: rgba(255, 61, 26, 0.35); }
-.demo-badge--medium { background: var(--paper-dim); border: var(--border); }
-.demo-badge--low { background: var(--paper-dim); border: var(--border); opacity: 0.75; }
-.demo-badge--fixed { background: var(--lime); color: var(--ink); }
-.demo-badge--open { background: transparent; border: var(--border); }
-
-.demo-toggle-group { display: inline-flex; border: var(--border); margin-bottom: var(--space-3); }
-.demo-toggle-group button {
-  padding: 0.55rem 1.1rem;
-  font-family: var(--font-mono);
-  font-size: 0.78rem;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-}
-.demo-toggle-group button.active { background: var(--ink); color: var(--paper); }
-.demo-toggle-group button + button { border-left: var(--border); }
-
-.demo-shop-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-2); margin-bottom: var(--space-3); }
-@media (max-width: 760px) { .demo-shop-grid { grid-template-columns: repeat(2, 1fr); } }
-.demo-shop-item { border: var(--border); padding: var(--space-2); display: flex; flex-direction: column; gap: 0.5rem; }
-.demo-shop-item__swatch {
-  aspect-ratio: 1;
-  background: var(--paper-dim);
+.dt-stat-value { font-family: var(--dt-font-display); font-weight: 800; font-size: 1.9rem; line-height: 1; }
+.dt-stat-label { font-family: var(--dt-font-mono); font-size: 0.68rem; text-transform: uppercase; color: var(--dt-fg-soft); letter-spacing: 0.05em; }
+.dt-bar-track { flex: 1; height: 1.1rem; background: var(--dt-track); border-radius: var(--dt-radius-sm, var(--dt-radius)); overflow: hidden; }
+.dt-bar-fill { height: 100%; background: var(--dt-accent); transition: width 0.5s ease; }
+.dt-row {
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
-  font-family: var(--font-mono);
-  color: var(--ink-soft);
-  font-size: 0.75rem;
+  padding: 0.7rem 0;
+  border-bottom: var(--dt-border);
+  gap: 0.75rem;
+  flex-wrap: wrap;
 }
-.demo-shop-item__name { font-weight: 700; font-size: 0.9rem; }
-.demo-shop-item__price { font-family: var(--font-mono); color: var(--ink-soft); font-size: 0.85rem; }
-.demo-cart { border: var(--border); padding: var(--space-3); background: var(--paper-dim); }
-.demo-cart__row { display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 0.85rem; padding: 0.35rem 0; }
-.demo-cart__total { display: flex; justify-content: space-between; font-weight: 700; padding-top: 0.6rem; margin-top: 0.6rem; border-top: var(--border); }
+.dt-dot { width: 0.55rem; height: 0.55rem; border-radius: 50%; display: inline-block; margin-right: 0.55rem; flex-shrink: 0; }
+.dt-shell summary { list-style: none; }
+.dt-shell summary::-webkit-details-marker { display: none; }
+.dt-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+.dt-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem; }
+.dt-grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.75rem; }
+@media (max-width: 640px) { .dt-grid-3, .dt-grid-4 { grid-template-columns: repeat(2, 1fr); } }
 
-.demo-steps { display: flex; gap: 0.5rem; margin-bottom: var(--space-3); font-family: var(--font-mono); font-size: 0.75rem; }
-.demo-step { padding: 0.4rem 0.8rem; border: var(--border); color: var(--ink-soft); }
-.demo-step.active { background: var(--ink); color: var(--paper); }
-.demo-slot-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(90px, 1fr)); gap: 0.5rem; }
-.demo-slot { border: var(--border); padding: 0.6rem; text-align: center; font-family: var(--font-mono); font-size: 0.8rem; }
-.demo-slot.selected { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
-.demo-service-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem; }
-@media (max-width: 700px) { .demo-service-grid { grid-template-columns: 1fr; } }
-.demo-service-card { border: var(--border); padding: var(--space-2); text-align: left; }
-.demo-service-card.selected { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+/* --- Aurelie (headless storefront) — warm boutique e-commerce --- */
+.demo-theme--storefront {
+  --dt-bg: #faf3ea; --dt-card: #ffffff; --dt-fg: #2b2420; --dt-fg-soft: #93826c;
+  --dt-accent: #c1633d; --dt-accent-ink: #fff9f2;
+  --dt-border: 1px solid #e8dbc7; --dt-radius: 14px; --dt-radius-sm: 8px; --dt-radius-btn: 999px;
+  --dt-track: #efe3d0; --dt-tag-bg: #f2e6d3; --dt-tag-fg: #7a5f42;
+  --dt-font: Georgia, 'Iowan Old Style', 'Times New Roman', serif;
+  --dt-font-mono: Georgia, serif; --dt-font-display: Georgia, serif;
+  --dt-shadow: 0 10px 26px rgba(43, 36, 32, 0.08);
+}
 
-.demo-course-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-2); }
-@media (max-width: 760px) { .demo-course-grid { grid-template-columns: 1fr 1fr; } }
-.demo-course-card { border: var(--border); padding: var(--space-2); cursor: pointer; display: flex; flex-direction: column; gap: 0.4rem; }
-.demo-course-card.selected { border-color: var(--accent); background: rgba(255, 61, 26, 0.06); }
-.demo-course-card__title { font-weight: 700; font-size: 0.9rem; }
+/* --- Fleetline (driver dispatch) — dark ops console --- */
+.demo-theme--dispatch {
+  --dt-bg: #0b0f14; --dt-card: #121a22; --dt-fg: #dbe6ec; --dt-fg-soft: #6c8494;
+  --dt-accent: #22d3ee; --dt-accent-ink: #062028;
+  --dt-border: 1px solid #24333f; --dt-radius: 4px; --dt-radius-sm: 3px; --dt-radius-btn: 4px;
+  --dt-track: #182430; --dt-tag-bg: #16232d; --dt-tag-fg: #7fd8ea;
+  --dt-font: 'SFMono-Regular', 'JetBrains Mono', ui-monospace, Menlo, monospace;
+  --dt-font-mono: inherit; --dt-font-display: inherit;
+  --dt-shadow: none;
+}
 
-.demo-driver-dot { width: 0.6rem; height: 0.6rem; border-radius: 50%; display: inline-block; margin-right: 0.5rem; }
-.demo-driver-dot--idle { background: var(--ink-soft); }
-.demo-driver-dot--enroute { background: var(--accent); }
-.demo-driver-dot--delivered { background: var(--lime); }
-.demo-progress-track { height: 0.4rem; background: var(--paper-dim); border: var(--border); margin-top: 0.4rem; }
-.demo-progress-fill { height: 100%; background: var(--accent); transition: width 0.3s linear; }
+/* --- Ledger (cloud cost report) — terminal-green FinOps tool --- */
+.demo-theme--cloudcost {
+  --dt-bg: #0a0f0a; --dt-card: #101a12; --dt-fg: #c3f5d3; --dt-fg-soft: #5f9573;
+  --dt-accent: #ffb454; --dt-accent-ink: #251500;
+  --dt-border: 1px solid #1f3324; --dt-radius: 2px; --dt-radius-sm: 2px; --dt-radius-btn: 2px;
+  --dt-track: #142317; --dt-tag-bg: #142317; --dt-tag-fg: #ffb454;
+  --dt-font: 'JetBrains Mono', ui-monospace, Menlo, monospace;
+  --dt-font-mono: inherit; --dt-font-display: inherit;
+  --dt-shadow: none;
+}
+
+/* --- Redteam (security findings) — high-contrast report console --- */
+.demo-theme--security {
+  --dt-bg: #121214; --dt-card: #1b1c1f; --dt-fg: #ececec; --dt-fg-soft: #8b8f96;
+  --dt-accent: #ff3b5c; --dt-accent-ink: #fff;
+  --dt-border: 1px solid #2d2f34; --dt-radius: 3px; --dt-radius-sm: 3px; --dt-radius-btn: 3px;
+  --dt-track: #232529; --dt-tag-bg: #232529; --dt-tag-fg: #ff9bad;
+  --dt-font: 'JetBrains Mono', ui-monospace, Menlo, monospace;
+  --dt-font-mono: inherit; --dt-font-display: inherit;
+  --dt-shadow: none;
+}
+
+/* --- Petal & Stone (booking flow) — soft studio-booking app --- */
+.demo-theme--booking {
+  --dt-bg: #f7f1f9; --dt-card: #ffffff; --dt-fg: #3a2f44; --dt-fg-soft: #9a89ab;
+  --dt-accent: #8b6fb3; --dt-accent-ink: #fff;
+  --dt-border: 1px solid #e7dcee; --dt-radius: 20px; --dt-radius-sm: 12px; --dt-radius-btn: 999px;
+  --dt-track: #ede2f2; --dt-tag-bg: #f0e5f5; --dt-tag-fg: #7a5c9e;
+  --dt-font: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  --dt-font-mono: inherit; --dt-font-display: inherit;
+  --dt-shadow: 0 12px 26px rgba(139, 111, 179, 0.14);
+}
+
+/* --- Lernly (course recommendations) — bright playful edtech --- */
+.demo-theme--recommend {
+  --dt-bg: #ffffff; --dt-card: #f4f6ff; --dt-fg: #171a2e; --dt-fg-soft: #6b70a0;
+  --dt-accent: #4f46e5; --dt-accent-ink: #fff;
+  --dt-border: 2px solid #e1e4fb; --dt-radius: 16px; --dt-radius-sm: 10px; --dt-radius-btn: 12px;
+  --dt-track: #edf0fd; --dt-tag-bg: #fef3c7; --dt-tag-fg: #8a5b09;
+  --dt-font: system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --dt-font-mono: inherit; --dt-font-display: inherit;
+  --dt-shadow: 0 6px 16px rgba(79, 70, 229, 0.1);
+}
 
 /* ============================================================
    MISC UTILITIES

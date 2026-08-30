@@ -29,18 +29,18 @@ export default function BookingFlowDemo() {
   if (confirmed) {
     const service = SERVICES.find((s) => s.id === form.service)
     return (
-      <div>
-        <div className="eyebrow" style={{ marginBottom: '0.75rem' }}>Confirmed</div>
-        <p className="type-h3" style={{ fontWeight: 700, marginBottom: '0.75rem' }}>
+      <div className="demo-theme--booking dt-shell">
+        <div className="dt-eyebrow">Petal &amp; Stone — confirmed</div>
+        <div className="dt-heading" style={{ fontSize: '1.3rem', marginBottom: '1rem' }}>
           Booked in two steps — down from five.
-        </p>
-        <div className="demo-cart">
-          <div className="demo-cart__row"><span>Service</span><span>{service.name}</span></div>
-          <div className="demo-cart__row"><span>Time</span><span>{form.slot}</span></div>
-          <div className="demo-cart__row"><span>Name</span><span>{form.name}</span></div>
-          <div className="demo-cart__row"><span>Email</span><span>{form.email}</span></div>
         </div>
-        <button type="button" className="btn btn--ghost" style={{ marginTop: 'var(--space-3)' }} onClick={reset}>
+        <div className="dt-card">
+          <div className="dt-row"><span>Service</span><span>{service.name}</span></div>
+          <div className="dt-row"><span>Time</span><span>{form.slot}</span></div>
+          <div className="dt-row"><span>Name</span><span>{form.name}</span></div>
+          <div className="dt-row" style={{ borderBottom: 'none' }}><span>Email</span><span>{form.email}</span></div>
+        </div>
+        <button type="button" className="dt-btn dt-btn--ghost" style={{ marginTop: '1.25rem' }} onClick={reset}>
           Book another →
         </button>
       </div>
@@ -48,36 +48,49 @@ export default function BookingFlowDemo() {
   }
 
   return (
-    <div>
-      <div className="demo-steps">
-        <div className={`demo-step ${step === 1 ? 'active' : ''}`}>1 · Service &amp; time</div>
-        <div className={`demo-step ${step === 2 ? 'active' : ''}`}>2 · Your details</div>
+    <div className="demo-theme--booking dt-shell">
+      <div className="dt-eyebrow">Petal &amp; Stone — book a visit</div>
+
+      <div style={{ display: 'flex', gap: '0.5rem', marginBottom: '1.5rem' }}>
+        <div className="dt-tag" style={{ background: step === 1 ? 'var(--dt-accent)' : 'var(--dt-tag-bg)', color: step === 1 ? '#fff' : 'var(--dt-tag-fg)' }}>1 · Service &amp; time</div>
+        <div className="dt-tag" style={{ background: step === 2 ? 'var(--dt-accent)' : 'var(--dt-tag-bg)', color: step === 2 ? '#fff' : 'var(--dt-tag-fg)' }}>2 · Your details</div>
       </div>
 
       {step === 1 && (
         <>
-          <div className="eyebrow" style={{ marginBottom: '0.6rem' }}>Choose a service</div>
-          <div className="demo-service-grid" style={{ marginBottom: 'var(--space-3)' }}>
+          <div className="dt-label">Choose a service</div>
+          <div className="dt-grid-3" style={{ marginBottom: '1.25rem' }}>
             {SERVICES.map((s) => (
               <button
                 type="button"
                 key={s.id}
-                className={`demo-service-card ${form.service === s.id ? 'selected' : ''}`}
+                className="dt-card"
+                style={{
+                  textAlign: 'left', cursor: 'pointer',
+                  borderColor: form.service === s.id ? 'var(--dt-accent)' : undefined,
+                  background: form.service === s.id ? 'var(--dt-accent)' : 'var(--dt-card)',
+                  color: form.service === s.id ? '#fff' : 'var(--dt-fg)',
+                }}
                 onClick={() => setForm((f) => ({ ...f, service: s.id }))}
               >
                 <div style={{ fontWeight: 700 }}>{s.name}</div>
-                <div className="type-mono" style={{ fontSize: '0.75rem', opacity: 0.75 }}>{s.duration}</div>
+                <div style={{ fontSize: '0.78rem', opacity: 0.75 }}>{s.duration}</div>
               </button>
             ))}
           </div>
 
-          <div className="eyebrow" style={{ marginBottom: '0.6rem' }}>Pick a time</div>
-          <div className="demo-slot-grid" style={{ marginBottom: 'var(--space-3)' }}>
+          <div className="dt-label">Pick a time</div>
+          <div className="dt-grid-4" style={{ marginBottom: '1.5rem' }}>
             {SLOTS.map((slot) => (
               <button
                 type="button"
                 key={slot}
-                className={`demo-slot ${form.slot === slot ? 'selected' : ''}`}
+                className="dt-card"
+                style={{
+                  textAlign: 'center', cursor: 'pointer', fontSize: '0.85rem',
+                  background: form.slot === slot ? 'var(--dt-accent)' : 'var(--dt-card)',
+                  color: form.slot === slot ? '#fff' : 'var(--dt-fg)',
+                }}
                 onClick={() => setForm((f) => ({ ...f, slot }))}
               >
                 {slot}
@@ -85,7 +98,7 @@ export default function BookingFlowDemo() {
             ))}
           </div>
 
-          <button type="button" className="btn btn--solid" disabled={!step1Valid} onClick={() => setStep(2)}>
+          <button type="button" className="dt-btn" disabled={!step1Valid} onClick={() => setStep(2)}>
             Continue →
           </button>
         </>
@@ -93,29 +106,19 @@ export default function BookingFlowDemo() {
 
       {step === 2 && (
         <>
-          <div className="grid-2" style={{ gap: '1rem', marginBottom: 'var(--space-3)' }}>
-            <div className="form-field">
-              <label htmlFor="demo-name">Name</label>
-              <input
-                id="demo-name"
-                type="text"
-                value={form.name}
-                onChange={(e) => setForm((f) => ({ ...f, name: e.target.value }))}
-              />
+          <div className="dt-grid-2" style={{ marginBottom: '1.5rem' }}>
+            <div>
+              <label className="dt-label" htmlFor="pb-name">Name</label>
+              <input id="pb-name" className="dt-input" type="text" value={form.name} onChange={(e) => setForm((f) => ({ ...f, name: e.target.value }))} />
             </div>
-            <div className="form-field">
-              <label htmlFor="demo-email">Email</label>
-              <input
-                id="demo-email"
-                type="email"
-                value={form.email}
-                onChange={(e) => setForm((f) => ({ ...f, email: e.target.value }))}
-              />
+            <div>
+              <label className="dt-label" htmlFor="pb-email">Email</label>
+              <input id="pb-email" className="dt-input" type="email" value={form.email} onChange={(e) => setForm((f) => ({ ...f, email: e.target.value }))} />
             </div>
           </div>
           <div style={{ display: 'flex', gap: '0.75rem' }}>
-            <button type="button" className="btn btn--ghost" onClick={() => setStep(1)}>← Back</button>
-            <button type="button" className="btn btn--accent" disabled={!step2Valid} onClick={() => setConfirmed(true)}>
+            <button type="button" className="dt-btn dt-btn--ghost" onClick={() => setStep(1)}>← Back</button>
+            <button type="button" className="dt-btn" disabled={!step2Valid} onClick={() => setConfirmed(true)}>
               Confirm booking →
             </button>
           </div>

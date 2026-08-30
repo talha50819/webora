@@ -1,10 +1,10 @@
 import { useState } from 'react'
 
 const PRODUCTS = [
-  { id: 'tote', name: 'Canvas Tote', price: 38, swatch: 'TOTE' },
-  { id: 'shirt', name: 'Linen Shirt', price: 64, swatch: 'SHIRT' },
-  { id: 'mug', name: 'Ceramic Mug', price: 22, swatch: 'MUG' },
-  { id: 'scarf', name: 'Wool Scarf', price: 48, swatch: 'SCARF' },
+  { id: 'tote', name: 'Canvas Tote', price: 38, swatch: 'No. 01' },
+  { id: 'shirt', name: 'Linen Shirt', price: 64, swatch: 'No. 02' },
+  { id: 'mug', name: 'Ceramic Mug', price: 22, swatch: 'No. 03' },
+  { id: 'scarf', name: 'Wool Scarf', price: 48, swatch: 'No. 04' },
 ]
 
 export default function StorefrontDemo() {
@@ -21,68 +21,72 @@ export default function StorefrontDemo() {
   }
 
   return (
-    <div>
-      <div className="demo-stats">
+    <div className="demo-theme--storefront dt-shell">
+      <div className="dt-eyebrow">Aurelie — page load</div>
+      <div style={{ display: 'flex', gap: '2rem', marginBottom: '1.5rem' }}>
         <div>
-          <div className="demo-stat__value">1.5s</div>
-          <div className="demo-stat__label">Page load, after</div>
+          <div className="dt-stat-value">1.5s</div>
+          <div className="dt-stat-label">After rebuild</div>
         </div>
         <div>
-          <div className="demo-stat__value">−75%</div>
-          <div className="demo-stat__label">Load time cut</div>
+          <div className="dt-stat-value" style={{ color: 'var(--dt-accent)' }}>−75%</div>
+          <div className="dt-stat-label">Faster than before</div>
         </div>
       </div>
 
-      <div className="demo-bar-row">
-        <span className="demo-bar-row__label">Before</span>
-        <div className="demo-bar-track">
-          <div className="demo-bar-fill" style={{ width: '100%' }} />
-        </div>
-        <span className="demo-bar-row__value">6.0s</span>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', marginBottom: '0.5rem' }}>
+        <span className="dt-label" style={{ width: '3.5rem', margin: 0 }}>Before</span>
+        <div className="dt-bar-track"><div className="dt-bar-fill" style={{ width: '100%', opacity: 0.4 }} /></div>
+        <span className="dt-tag">6.0s</span>
       </div>
-      <div className="demo-bar-row" style={{ marginBottom: 'var(--space-3)' }}>
-        <span className="demo-bar-row__label">After</span>
-        <div className="demo-bar-track">
-          <div className="demo-bar-fill demo-bar-fill--lime" style={{ width: '25%' }} />
-        </div>
-        <span className="demo-bar-row__value">1.5s</span>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', marginBottom: '1.75rem' }}>
+        <span className="dt-label" style={{ width: '3.5rem', margin: 0 }}>After</span>
+        <div className="dt-bar-track"><div className="dt-bar-fill" style={{ width: '25%' }} /></div>
+        <span className="dt-tag">1.5s</span>
       </div>
 
-      <div className="eyebrow" style={{ marginBottom: '0.75rem' }}>Storefront (try it)</div>
-      <div className="demo-shop-grid">
+      <div className="dt-eyebrow">Shop the collection</div>
+      <div className="dt-grid-4" style={{ marginBottom: '1.25rem' }}>
         {PRODUCTS.map((p) => (
-          <div className="demo-shop-item" key={p.id}>
-            <div className="demo-shop-item__swatch">{p.swatch}</div>
-            <div className="demo-shop-item__name">{p.name}</div>
-            <div className="demo-shop-item__price">${p.price}</div>
-            <button type="button" className="btn btn--ghost" style={{ fontSize: '0.72rem', padding: '0.55rem 0.8rem' }} onClick={() => addToCart(p.id)}>
-              Add to cart
+          <div className="dt-card" key={p.id} style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
+            <div
+              style={{
+                aspectRatio: '1', background: 'var(--dt-tag-bg)', borderRadius: 'var(--dt-radius-sm)',
+                display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--dt-tag-fg)', fontSize: '0.75rem',
+              }}
+            >
+              {p.swatch}
+            </div>
+            <div className="dt-heading" style={{ fontSize: '0.95rem' }}>{p.name}</div>
+            <div style={{ color: 'var(--dt-fg-soft)' }}>${p.price}</div>
+            <button type="button" className="dt-btn dt-btn--ghost" style={{ justifyContent: 'center', fontSize: '0.75rem' }} onClick={() => addToCart(p.id)}>
+              Add to bag
             </button>
           </div>
         ))}
       </div>
 
-      <div className="demo-cart">
+      <div className="dt-card">
         {items.length === 0 ? (
-          <p className="type-mono" style={{ color: 'var(--ink-soft)' }}>Cart is empty — add something above.</p>
+          <p style={{ color: 'var(--dt-fg-soft)' }}>Your bag is empty — add something above.</p>
         ) : checkedOut ? (
-          <p className="type-mono">✓ Order placed — {count} item{count > 1 ? 's' : ''}, ${total}. (Demo only, nothing was charged.)</p>
+          <p>✓ Order placed — {count} item{count > 1 ? 's' : ''}, ${total}. (Demo only, nothing was charged.)</p>
         ) : (
           <>
             {items.map(([id, qty]) => {
               const p = PRODUCTS.find((x) => x.id === id)
               return (
-                <div className="demo-cart__row" key={id}>
+                <div className="dt-row" key={id}>
                   <span>{p.name} × {qty}</span>
                   <span>${p.price * qty}</span>
                 </div>
               )
             })}
-            <div className="demo-cart__total">
+            <div className="dt-row" style={{ borderBottom: 'none', fontWeight: 700, paddingBottom: 0 }}>
               <span>Total</span>
               <span>${total}</span>
             </div>
-            <button type="button" className="btn btn--accent" style={{ marginTop: '0.9rem' }} onClick={() => setCheckedOut(true)}>
+            <button type="button" className="dt-btn" style={{ marginTop: '0.9rem' }} onClick={() => setCheckedOut(true)}>
               Checkout →
             </button>
           </>

@@ -32,6 +32,12 @@ const INITIAL_FINDINGS = [
 ]
 
 const SEVERITY_LABEL = { critical: 'Critical', high: 'High', medium: 'Medium', low: 'Low' }
+const SEVERITY_STYLE = {
+  critical: { background: 'var(--dt-accent)', color: 'var(--dt-accent-ink)' },
+  high: { background: 'rgba(255,59,92,0.35)', color: 'var(--dt-fg)' },
+  medium: { background: 'var(--dt-tag-bg)', color: 'var(--dt-tag-fg)' },
+  low: { background: 'var(--dt-track)', color: 'var(--dt-fg-soft)' },
+}
 
 export default function SecurityReviewDemo() {
   const [statusById, setStatusById] = useState({})
@@ -43,48 +49,53 @@ export default function SecurityReviewDemo() {
   const fixedCount = INITIAL_FINDINGS.filter((f) => statusById[f.id] === 'fixed').length
 
   return (
-    <div>
-      <div className="demo-stats">
+    <div className="demo-theme--security dt-shell">
+      <div className="dt-eyebrow">Redteam — engagement report</div>
+
+      <div style={{ display: 'flex', gap: '2rem', marginBottom: '1.5rem' }}>
         <div>
-          <div className="demo-stat__value">{INITIAL_FINDINGS.length}</div>
-          <div className="demo-stat__label">Findings</div>
+          <div className="dt-stat-value">{INITIAL_FINDINGS.length}</div>
+          <div className="dt-stat-label">Findings</div>
         </div>
         <div>
-          <div className="demo-stat__value" style={{ color: fixedCount === INITIAL_FINDINGS.length ? 'var(--lime)' : 'var(--accent)' }}>
+          <div className="dt-stat-value" style={{ color: fixedCount === INITIAL_FINDINGS.length ? '#4ade80' : 'var(--dt-accent)' }}>
             {fixedCount}/{INITIAL_FINDINGS.length}
           </div>
-          <div className="demo-stat__label">Remediated</div>
+          <div className="dt-stat-label">Remediated</div>
         </div>
       </div>
 
-      <div className="faq-list">
-        {INITIAL_FINDINGS.map((f) => {
-          const fixed = statusById[f.id] === 'fixed'
-          return (
-            <details className="faq-item" key={f.id}>
-              <summary className="faq-item__q" style={{ gap: '0.75rem' }}>
-                <span className={`demo-badge demo-badge--${f.severity}`}>{SEVERITY_LABEL[f.severity]}</span>
-                <span style={{ flex: 1 }}>{f.title}</span>
-                <span
-                  className={`demo-badge ${fixed ? 'demo-badge--fixed' : 'demo-badge--open'}`}
-                  style={{ cursor: 'pointer' }}
-                  onClick={(e) => {
-                    e.preventDefault()
-                    e.stopPropagation()
-                    toggle(f.id)
-                  }}
-                >
-                  {fixed ? '✓ Fixed' : 'Open'}
-                </span>
-              </summary>
-              <div className="faq-item__a">
-                <p style={{ marginBottom: '0.5rem' }}><strong style={{ color: 'var(--ink)' }}>Repro: </strong>{f.repro}</p>
-                <p><strong style={{ color: 'var(--ink)' }}>Fix: </strong>{f.fix}</p>
-              </div>
-            </details>
-          )
-        })}
-      </div>
+      {INITIAL_FINDINGS.map((f) => {
+        const fixed = statusById[f.id] === 'fixed'
+        return (
+          <details className="dt-card" key={f.id} style={{ marginBottom: '0.6rem' }}>
+            <summary style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', cursor: 'pointer', listStyle: 'none' }}>
+              <span className="dt-badge" style={SEVERITY_STYLE[f.severity]}>{SEVERITY_LABEL[f.severity]}</span>
+              <span style={{ flex: 1, fontWeight: 600 }}>{f.title}</span>
+              <span
+                className="dt-badge"
+                style={{
+                  cursor: 'pointer',
+                  background: fixed ? '#173324' : 'transparent',
+                  color: fixed ? '#4ade80' : 'var(--dt-fg-soft)',
+                  border: fixed ? 'none' : 'var(--dt-border)',
+                }}
+                onClick={(e) => {
+                  e.preventDefault()
+                  e.stopPropagation()
+                  toggle(f.id)
+                }}
+              >
+                {fixed ? '✓ Fixed' : 'Open'}
+              </span>
+            </summary>
+            <div style={{ marginTop: '0.9rem', color: 'var(--dt-fg-soft)', fontSize: '0.85rem', lineHeight: 1.6 }}>
+              <p style={{ marginBottom: '0.5rem' }}><strong style={{ color: 'var(--dt-fg)' }}>Repro: </strong>{f.repro}</p>
+              <p><strong style={{ color: 'var(--dt-fg)' }}>Fix: </strong>{f.fix}</p>
+            </div>
+          </details>
+        )
+      })}
     </div>
   )
 }

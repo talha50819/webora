@@ -60,7 +60,7 @@ export default function WorkDetail() {
               <span className="demo-frame__dot" />
               <span className="demo-frame__dot" />
               <span className="demo-frame__dot" />
-              <span className="demo-frame__label">{project.slug}.demo</span>
+              <span className="demo-frame__label">{project.demoLabel || `${project.slug}.demo`}</span>
             </div>
             <div className="demo-frame__body">
               {Demo ? <Demo /> : <p className="type-mono">Demo coming soon.</p>}

@@ -22,19 +22,25 @@ export default function RecommendDemo() {
   const recs = selected ? recommendationsFor(selected) : []
 
   return (
-    <div>
-      <div className="eyebrow" style={{ marginBottom: '0.75rem' }}>Pick a course (try it)</div>
-      <div className="demo-course-grid" style={{ marginBottom: 'var(--space-3)' }}>
+    <div className="demo-theme--recommend dt-shell">
+      <div className="dt-eyebrow">Lernly — pick a course</div>
+
+      <div className="dt-grid-3" style={{ marginBottom: '1.5rem' }}>
         {COURSES.map((c) => (
           <div
             key={c.id}
-            className={`demo-course-card ${selected?.id === c.id ? 'selected' : ''}`}
+            className="dt-card"
+            style={{
+              cursor: 'pointer',
+              borderColor: selected?.id === c.id ? 'var(--dt-accent)' : undefined,
+              background: selected?.id === c.id ? '#eef0ff' : 'var(--dt-card)',
+            }}
             onClick={() => setSelected(c)}
           >
-            <div className="demo-course-card__title">{c.name}</div>
-            <div className="tag-list">
+            <div className="dt-heading" style={{ fontSize: '0.95rem' }}>{c.name}</div>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.35rem' }}>
               {c.tags.map((t) => (
-                <span className="tag" key={t} style={{ fontSize: '0.65rem', padding: '0.25rem 0.5rem' }}>{t}</span>
+                <span className="dt-tag" key={t}>{t}</span>
               ))}
             </div>
           </div>
@@ -42,19 +48,17 @@ export default function RecommendDemo() {
       </div>
 
       {selected && (
-        <div className="demo-cart">
-          <div className="type-mono" style={{ fontSize: '0.78rem', marginBottom: '0.75rem', color: 'var(--ink-soft)' }}>
-            Because you picked "{selected.name}" →
+        <div className="dt-card" style={{ background: 'var(--dt-tag-bg)', borderStyle: 'dashed' }}>
+          <div style={{ fontSize: '0.8rem', color: 'var(--dt-fg-soft)', marginBottom: '0.9rem' }}>
+            Because you picked <strong style={{ color: 'var(--dt-fg)' }}>{selected.name}</strong> →
           </div>
           {recs.length === 0 ? (
             <p>No close matches in this demo catalog.</p>
           ) : (
             recs.map(({ course, shared }) => (
-              <div className="demo-cart__row" key={course.id} style={{ alignItems: 'center' }}>
-                <span>{course.name}</span>
-                <span className="type-mono" style={{ fontSize: '0.7rem', color: 'var(--ink-soft)' }}>
-                  shared: {shared.join(', ')}
-                </span>
+              <div className="dt-row" key={course.id} style={{ borderBottomColor: 'rgba(23,26,46,0.08)' }}>
+                <span style={{ fontWeight: 600 }}>{course.name}</span>
+                <span className="dt-tag">{shared.join(', ')}</span>
               </div>
             ))
           )}
