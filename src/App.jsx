@@ -7,6 +7,7 @@ import Services from './pages/Services.jsx'
 import ServiceDetail from './pages/ServiceDetail.jsx'
 import About from './pages/About.jsx'
 import Work from './pages/Work.jsx'
+import WorkDetail from './pages/WorkDetail.jsx'
 import Contact from './pages/Contact.jsx'
 import NotFound from './pages/NotFound.jsx'
 
@@ -36,6 +37,7 @@ export default function App() {
           <Route path="/services/:slug" element={<ServiceDetail />} />
           <Route path="/about" element={<About />} />
           <Route path="/work" element={<Work />} />
+          <Route path="/work/:slug" element={<WorkDetail />} />
           <Route path="/contact" element={<Contact />} />
           <Route
             path="/live-tv"

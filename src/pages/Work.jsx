@@ -24,7 +24,7 @@ export default function Work() {
         <div className="container" style={{ padding: 0 }}>
           <div className="work-grid">
             {projects.map((p) => (
-              <div className="work-card" key={p.title}>
+              <div className="work-card" key={p.slug}>
                 <div className="work-card__meta type-mono">
                   <span>{p.sector}</span>
                 </div>
@@ -35,6 +35,9 @@ export default function Work() {
                     <span className="tag" key={t}>{t}</span>
                   ))}
                 </div>
+                <Link to={paths.workItem(p.slug)} className="btn btn--ghost" style={{ alignSelf: 'flex-start' }}>
+                  Open project →
+                </Link>
               </div>
             ))}
           </div>

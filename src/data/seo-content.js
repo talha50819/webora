@@ -27,6 +27,7 @@ export const paths = {
   contact: '/contact/',
   liveTv: '/live-tv/',
   service: (slug) => `/services/${slug}/`,
+  workItem: (slug) => `/work/${slug}/`,
 }
 
 // Rendered on Home as a visible FAQ section and exposed as FAQPage JSON-LD
@@ -138,6 +139,25 @@ export const siteRoutes = {
     noindex: true,
     jsonLd: buildFaqJsonLd(liveTvFaqs),
   },
+}
+
+export function buildWorkSeo(project) {
+  if (!project) return null
+  const path = paths.workItem(project.slug)
+  return {
+    title: `${project.title} — ${SITE_NAME}`,
+    description: project.desc,
+    path,
+    jsonLd: {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE_URL}${paths.home}` },
+        { '@type': 'ListItem', position: 2, name: 'Work', item: `${SITE_URL}${paths.work}` },
+        { '@type': 'ListItem', position: 3, name: project.title, item: `${SITE_URL}${path}` },
+      ],
+    },
+  }
 }
 
 export function buildServiceSeo(service) {

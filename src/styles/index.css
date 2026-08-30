@@ -773,6 +773,127 @@ h1, h2, h3, h4 {
 }
 
 /* ============================================================
+   PORTFOLIO DEMOS
+   ============================================================ */
+.demo-frame { border: var(--border); background: var(--paper); }
+.demo-frame__bar {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.7rem 1rem;
+  border-bottom: var(--border);
+  background: var(--paper-dim);
+}
+.demo-frame__dot { width: 0.55rem; height: 0.55rem; border-radius: 50%; background: var(--ink); opacity: 0.25; }
+.demo-frame__label {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ink-soft);
+  margin-left: auto;
+}
+.demo-frame__body { padding: var(--space-3) var(--space-4); }
+
+.demo-stats { display: flex; flex-wrap: wrap; gap: var(--space-4); margin-bottom: var(--space-3); }
+.demo-stat__value { font-family: var(--font-display); font-weight: 700; font-size: 2rem; line-height: 1; }
+.demo-stat__label {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  letter-spacing: 0.05em;
+}
+
+.demo-bar-row { display: flex; align-items: center; gap: var(--space-2); margin-bottom: 0.6rem; }
+.demo-bar-row__label { width: 7rem; font-family: var(--font-mono); font-size: 0.75rem; flex-shrink: 0; }
+.demo-bar-track { flex: 1; height: 1.4rem; background: var(--paper-dim); border: var(--border); }
+.demo-bar-fill { height: 100%; background: var(--accent); transition: width 0.5s ease; }
+.demo-bar-fill--lime { background: var(--lime); }
+.demo-bar-row__value { font-family: var(--font-mono); font-size: 0.8rem; width: 3.5rem; text-align: right; flex-shrink: 0; }
+
+.demo-list { border-top: var(--border); }
+.demo-list-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-2) 0;
+  border-bottom: var(--border);
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+
+.demo-badge {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.25rem 0.55rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+.demo-badge--critical { background: var(--accent); color: var(--accent-ink); }
+.demo-badge--high { background: rgba(255, 61, 26, 0.35); }
+.demo-badge--medium { background: var(--paper-dim); border: var(--border); }
+.demo-badge--low { background: var(--paper-dim); border: var(--border); opacity: 0.75; }
+.demo-badge--fixed { background: var(--lime); color: var(--ink); }
+.demo-badge--open { background: transparent; border: var(--border); }
+
+.demo-toggle-group { display: inline-flex; border: var(--border); margin-bottom: var(--space-3); }
+.demo-toggle-group button {
+  padding: 0.55rem 1.1rem;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.demo-toggle-group button.active { background: var(--ink); color: var(--paper); }
+.demo-toggle-group button + button { border-left: var(--border); }
+
+.demo-shop-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-2); margin-bottom: var(--space-3); }
+@media (max-width: 760px) { .demo-shop-grid { grid-template-columns: repeat(2, 1fr); } }
+.demo-shop-item { border: var(--border); padding: var(--space-2); display: flex; flex-direction: column; gap: 0.5rem; }
+.demo-shop-item__swatch {
+  aspect-ratio: 1;
+  background: var(--paper-dim);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  color: var(--ink-soft);
+  font-size: 0.75rem;
+}
+.demo-shop-item__name { font-weight: 700; font-size: 0.9rem; }
+.demo-shop-item__price { font-family: var(--font-mono); color: var(--ink-soft); font-size: 0.85rem; }
+.demo-cart { border: var(--border); padding: var(--space-3); background: var(--paper-dim); }
+.demo-cart__row { display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 0.85rem; padding: 0.35rem 0; }
+.demo-cart__total { display: flex; justify-content: space-between; font-weight: 700; padding-top: 0.6rem; margin-top: 0.6rem; border-top: var(--border); }
+
+.demo-steps { display: flex; gap: 0.5rem; margin-bottom: var(--space-3); font-family: var(--font-mono); font-size: 0.75rem; }
+.demo-step { padding: 0.4rem 0.8rem; border: var(--border); color: var(--ink-soft); }
+.demo-step.active { background: var(--ink); color: var(--paper); }
+.demo-slot-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(90px, 1fr)); gap: 0.5rem; }
+.demo-slot { border: var(--border); padding: 0.6rem; text-align: center; font-family: var(--font-mono); font-size: 0.8rem; }
+.demo-slot.selected { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+.demo-service-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem; }
+@media (max-width: 700px) { .demo-service-grid { grid-template-columns: 1fr; } }
+.demo-service-card { border: var(--border); padding: var(--space-2); text-align: left; }
+.demo-service-card.selected { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+
+.demo-course-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-2); }
+@media (max-width: 760px) { .demo-course-grid { grid-template-columns: 1fr 1fr; } }
+.demo-course-card { border: var(--border); padding: var(--space-2); cursor: pointer; display: flex; flex-direction: column; gap: 0.4rem; }
+.demo-course-card.selected { border-color: var(--accent); background: rgba(255, 61, 26, 0.06); }
+.demo-course-card__title { font-weight: 700; font-size: 0.9rem; }
+
+.demo-driver-dot { width: 0.6rem; height: 0.6rem; border-radius: 50%; display: inline-block; margin-right: 0.5rem; }
+.demo-driver-dot--idle { background: var(--ink-soft); }
+.demo-driver-dot--enroute { background: var(--accent); }
+.demo-driver-dot--delivered { background: var(--lime); }
+.demo-progress-track { height: 0.4rem; background: var(--paper-dim); border: var(--border); margin-top: 0.4rem; }
+.demo-progress-fill { height: 100%; background: var(--accent); transition: width 0.3s linear; }
+
+/* ============================================================
    MISC UTILITIES
    ============================================================ */
 .stack { display: flex; flex-direction: column; }
