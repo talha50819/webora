@@ -1,9 +1,9 @@
 import { useState } from 'react'
 
 const SERVICES = [
-  { id: 'consult', name: 'Design consult', duration: '30 min' },
-  { id: 'session', name: 'Studio session', duration: '90 min' },
-  { id: 'review', name: 'Portfolio review', duration: '45 min' },
+  { id: 'consult', name: 'Design consult', duration: '30 min', img: 'petal-consult' },
+  { id: 'session', name: 'Studio session', duration: '90 min', img: 'petal-session' },
+  { id: 'review', name: 'Portfolio review', duration: '45 min', img: 'petal-review' },
 ]
 
 const SLOTS = ['9:00 AM', '10:30 AM', '1:00 PM', '2:30 PM', '4:00 PM']
@@ -49,6 +49,11 @@ export default function BookingFlowDemo() {
 
   return (
     <div className="demo-theme--booking dt-shell">
+      <img
+        src="https://picsum.photos/seed/petal-and-stone-studio/1200/360"
+        alt="Petal &amp; Stone studio"
+        style={{ width: '100%', aspectRatio: '10/3', objectFit: 'cover', borderRadius: 'var(--dt-radius)', marginBottom: '1.5rem' }}
+      />
       <div className="dt-eyebrow">Petal &amp; Stone — book a visit</div>
 
       <div style={{ display: 'flex', gap: '0.5rem', marginBottom: '1.5rem' }}>
@@ -73,6 +78,11 @@ export default function BookingFlowDemo() {
                 }}
                 onClick={() => setForm((f) => ({ ...f, service: s.id }))}
               >
+                <img
+                  src={`https://picsum.photos/seed/${s.img}/300/160`}
+                  alt=""
+                  style={{ width: '100%', aspectRatio: '15/8', objectFit: 'cover', borderRadius: 'var(--dt-radius-sm)', marginBottom: '0.6rem' }}
+                />
                 <div style={{ fontWeight: 700 }}>{s.name}</div>
                 <div style={{ fontSize: '0.78rem', opacity: 0.75 }}>{s.duration}</div>
               </button>

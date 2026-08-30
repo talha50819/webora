@@ -1,10 +1,10 @@
 import { useState } from 'react'
 
 const PRODUCTS = [
-  { id: 'tote', name: 'Canvas Tote', price: 38, swatch: 'No. 01' },
-  { id: 'shirt', name: 'Linen Shirt', price: 64, swatch: 'No. 02' },
-  { id: 'mug', name: 'Ceramic Mug', price: 22, swatch: 'No. 03' },
-  { id: 'scarf', name: 'Wool Scarf', price: 48, swatch: 'No. 04' },
+  { id: 'tote', name: 'Canvas Tote', price: 38, img: 'aurelie-tote-v2' },
+  { id: 'shirt', name: 'Linen Shirt', price: 64, img: 'aurelie-shirt-v2' },
+  { id: 'mug', name: 'Ceramic Mug', price: 22, img: 'aurelie-mug-v2' },
+  { id: 'scarf', name: 'Wool Scarf', price: 48, img: 'aurelie-scarf-v2' },
 ]
 
 export default function StorefrontDemo() {
@@ -49,14 +49,12 @@ export default function StorefrontDemo() {
       <div className="dt-grid-4" style={{ marginBottom: '1.25rem' }}>
         {PRODUCTS.map((p) => (
           <div className="dt-card" key={p.id} style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
-            <div
-              style={{
-                aspectRatio: '1', background: 'var(--dt-tag-bg)', borderRadius: 'var(--dt-radius-sm)',
-                display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--dt-tag-fg)', fontSize: '0.75rem',
-              }}
-            >
-              {p.swatch}
-            </div>
+            <img
+              src={`https://picsum.photos/seed/${p.img}/400/400`}
+              alt={p.name}
+              loading="lazy"
+              style={{ aspectRatio: '1', width: '100%', objectFit: 'cover', borderRadius: 'var(--dt-radius-sm)' }}
+            />
             <div className="dt-heading" style={{ fontSize: '0.95rem' }}>{p.name}</div>
             <div style={{ color: 'var(--dt-fg-soft)' }}>${p.price}</div>
             <button type="button" className="dt-btn dt-btn--ghost" style={{ justifyContent: 'center', fontSize: '0.75rem' }} onClick={() => addToCart(p.id)}>

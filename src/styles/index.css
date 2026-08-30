@@ -139,6 +139,8 @@ h1, h2, h3, h4 {
   padding-inline: var(--gutter);
 }
 
+.container--wide { max-width: 1680px; }
+
 .section {
   padding-block: var(--space-6);
   border-bottom: var(--border);
@@ -808,7 +810,11 @@ h1, h2, h3, h4 {
   background: var(--dt-bg);
   color: var(--dt-fg);
   font-family: var(--dt-font);
-  padding: var(--dt-pad, 1.75rem);
+  padding: var(--dt-pad, clamp(2rem, 4vw, 4rem));
+  min-height: 560px;
+}
+@media (max-width: 700px) {
+  .dt-shell { min-height: 0; }
 }
 .dt-eyebrow {
   font-family: var(--dt-font-mono);
@@ -900,12 +906,20 @@ h1, h2, h3, h4 {
   flex-wrap: wrap;
 }
 .dt-dot { width: 0.55rem; height: 0.55rem; border-radius: 50%; display: inline-block; margin-right: 0.55rem; flex-shrink: 0; }
+.dt-assign-row { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.6rem; }
+.dt-assign-row__controls { display: flex; gap: 0.5rem; }
+.dt-assign-row__controls .dt-select { width: auto; min-width: 9rem; }
+@media (max-width: 480px) {
+  .dt-assign-row__controls { width: 100%; }
+  .dt-assign-row__controls .dt-select { flex: 1; min-width: 0; }
+}
 .dt-shell summary { list-style: none; }
 .dt-shell summary::-webkit-details-marker { display: none; }
 .dt-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
 .dt-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem; }
 .dt-grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.75rem; }
 @media (max-width: 640px) { .dt-grid-3, .dt-grid-4 { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 420px) { .dt-grid-2, .dt-grid-3, .dt-grid-4 { grid-template-columns: 1fr; } }
 
 /* --- Aurelie (headless storefront) — warm boutique e-commerce --- */
 .demo-theme--storefront {

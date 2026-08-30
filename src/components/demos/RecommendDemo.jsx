@@ -1,12 +1,12 @@
 import { useState } from 'react'
 
 const COURSES = [
-  { id: 'py', name: 'Intro to Python', tags: ['beginner', 'programming'] },
-  { id: 'jsds', name: 'Data Structures in JS', tags: ['intermediate', 'programming'] },
-  { id: 'uxr', name: 'UX Research Basics', tags: ['beginner', 'design'] },
-  { id: 'css', name: 'Advanced CSS Layouts', tags: ['intermediate', 'design'] },
-  { id: 'ml', name: 'Machine Learning Foundations', tags: ['advanced', 'programming', 'ai'] },
-  { id: 'prompt', name: 'Prompt Engineering 101', tags: ['beginner', 'ai'] },
+  { id: 'py', name: 'Intro to Python', tags: ['beginner', 'programming'], img: 'lernly-py' },
+  { id: 'jsds', name: 'Data Structures in JS', tags: ['intermediate', 'programming'], img: 'lernly-jsds' },
+  { id: 'uxr', name: 'UX Research Basics', tags: ['beginner', 'design'], img: 'lernly-uxr' },
+  { id: 'css', name: 'Advanced CSS Layouts', tags: ['intermediate', 'design'], img: 'lernly-css' },
+  { id: 'ml', name: 'Machine Learning Foundations', tags: ['advanced', 'programming', 'ai'], img: 'lernly-ml' },
+  { id: 'prompt', name: 'Prompt Engineering 101', tags: ['beginner', 'ai'], img: 'lernly-prompt' },
 ]
 
 function recommendationsFor(course) {
@@ -37,6 +37,11 @@ export default function RecommendDemo() {
             }}
             onClick={() => setSelected(c)}
           >
+            <img
+              src={`https://picsum.photos/seed/${c.img}/300/160`}
+              alt=""
+              style={{ width: '100%', aspectRatio: '15/8', objectFit: 'cover', borderRadius: 'var(--dt-radius-sm)', marginBottom: '0.6rem' }}
+            />
             <div className="dt-heading" style={{ fontSize: '0.95rem' }}>{c.name}</div>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.35rem' }}>
               {c.tags.map((t) => (

@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from 'react'
 
 const INITIAL_DRIVERS = [
-  { id: 'd1', name: 'R. Alvarez', status: 'idle', delivery: null, progress: 0 },
-  { id: 'd2', name: 'K. Nomvete', status: 'idle', delivery: null, progress: 0 },
-  { id: 'd3', name: 'T. Osei', status: 'idle', delivery: null, progress: 0 },
+  { id: 'd1', name: 'R. Alvarez', avatar: 'fleetline-driver-1', status: 'idle', delivery: null, progress: 0 },
+  { id: 'd2', name: 'K. Nomvete', avatar: 'fleetline-driver-2', status: 'idle', delivery: null, progress: 0 },
+  { id: 'd3', name: 'T. Osei', avatar: 'fleetline-driver-3', status: 'idle', delivery: null, progress: 0 },
 ]
 
 const INITIAL_ORDERS = [
@@ -53,11 +53,22 @@ export default function DispatchDemo() {
 
       <div className="dt-grid-3" style={{ marginBottom: '1.5rem' }}>
         {drivers.map((d) => (
-          <div className="dt-card" key={d.id}>
-            <span className="dt-dot" style={{ background: DOT_COLOR[d.status] }} />
-            <span style={{ fontWeight: 700 }}>{d.name}</span>
-            <div className="dt-stat-label" style={{ marginTop: '0.5rem' }}>
-              {STATUS_LABEL[d.status]}{d.delivery ? ` · ${d.delivery}` : ''}
+          <div className="dt-card" key={d.id} style={{ display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
+            <img
+              src={`https://i.pravatar.cc/80?u=${d.avatar}`}
+              alt={d.name}
+              width="44"
+              height="44"
+              style={{ borderRadius: '50%', flexShrink: 0, border: '2px solid var(--dt-accent)' }}
+            />
+            <div>
+              <div style={{ fontWeight: 700 }}>
+                <span className="dt-dot" style={{ background: DOT_COLOR[d.status] }} />
+                {d.name}
+              </div>
+              <div className="dt-stat-label" style={{ marginTop: '0.3rem' }}>
+                {STATUS_LABEL[d.status]}{d.delivery ? ` · ${d.delivery}` : ''}
+              </div>
             </div>
           </div>
         ))}
@@ -66,13 +77,12 @@ export default function DispatchDemo() {
       <div className="dt-eyebrow">Deliveries</div>
       {orders.map((o) => (
         <div className="dt-card" key={o.id} style={{ marginBottom: '0.6rem' }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '0.6rem' }}>
+          <div className="dt-assign-row">
             <span>{o.id} → {o.dest}</span>
             {o.status === 'pending' && (
-              <div style={{ display: 'flex', gap: '0.5rem' }}>
+              <div className="dt-assign-row__controls">
                 <select
                   className="dt-select"
-                  style={{ width: 'auto' }}
                   value={assign[o.id] || ''}
                   onChange={(e) => setAssign((a) => ({ ...a, [o.id]: e.target.value }))}
                 >
@@ -81,7 +91,7 @@ export default function DispatchDemo() {
                     <option key={d.id} value={d.id}>{d.name}</option>
                   ))}
                 </select>
-                <button type="button" className="dt-btn" style={{ fontSize: '0.75rem', padding: '0.6rem 1rem' }} disabled={!assign[o.id]} onClick={() => dispatch(o.id)}>
+                <button type="button" className="dt-btn" style={{ fontSize: '0.75rem', padding: '0.6rem 1rem', whiteSpace: 'nowrap' }} disabled={!assign[o.id]} onClick={() => dispatch(o.id)}>
                   Dispatch
                 </button>
               </div>

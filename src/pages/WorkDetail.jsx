@@ -53,8 +53,8 @@ export default function WorkDetail() {
       </section>
 
       <section className="section" style={{ borderBottom: 'none' }}>
-        <div className="container">
-          <div className="eyebrow" style={{ marginBottom: '1.5rem' }}>Interactive demo</div>
+        <div className="container container--wide">
+          <div className="eyebrow" style={{ marginBottom: '1.5rem' }}>Interactive demo — try it</div>
           <div className="demo-frame">
             <div className="demo-frame__bar">
               <span className="demo-frame__dot" />
