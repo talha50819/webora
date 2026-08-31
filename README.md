@@ -1,6 +1,6 @@
 # Webora
 
-Website source for Webora — a full-spectrum technology company.
+Website source for Webora — my personal developer portfolio, showcasing web/mobile/cloud/security projects.
 
 ## Stack
 
@@ -23,4 +23,4 @@ npm run build
 
 Continuous deployment via Netlify from the `main` branch — every push
 to `main` triggers a production build and deploy to
-[webora.is-a.dev](https://webora.is-a.dev).
+[mtalha.is-a.dev](https://mtalha.is-a.dev).
