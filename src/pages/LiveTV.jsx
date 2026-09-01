@@ -98,7 +98,7 @@ export default function LiveTV() {
 
         streamsByChannelRef.current = streamsByChannel
         setChannels(withStreams)
-        setCategories(Array.from(categorySet).sort())
+        setCategories(Array.from(categorySet).sort((a, b) => a.localeCompare(b)))
         setCountries(
           Array.from(countryCodeSet)
             .map((code) => ({ code, name: countryNameMap.get(code) || code }))
