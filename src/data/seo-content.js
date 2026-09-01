@@ -100,31 +100,36 @@ export const siteRoutes = {
   home: {
     title: 'mTalha is a dev — Engineering Systems That Hold',
     description:
-      'mTalha is a dev — I plan, build, and deliver software, cloud, security, and AI projects personally or through vetted specialists, with fixed scope and infrastructure built to last.',
+      'Full-spectrum software engineering: web development, mobile apps, cloud & DevOps, cybersecurity, AI & machine learning, UI/UX design. Direct work with founder. Fixed scope, fixed cost.',
+    keywords: 'software engineering, web development, cloud consulting, cybersecurity, AI machine learning, freelance developer',
     path: paths.home,
     jsonLd: buildFaqJsonLd(faqs),
   },
   services: {
     title: 'Services — mTalha is a dev',
     description:
-      'Seven full-spectrum engineering disciplines — web, mobile, cloud & DevOps, cybersecurity, AI/ML, UI/UX design, and IT consulting — all coordinated personally by one point of contact.',
+      'Seven full-spectrum engineering disciplines — web development, mobile app development, cloud & DevOps, cybersecurity, AI/ML, UI/UX design, and IT consulting — all coordinated personally by founder.',
+    keywords: 'software engineering services, web development, cloud services, cybersecurity consulting, AI services, custom development',
     path: paths.services,
   },
   about: {
     title: 'About — mTalha is a dev',
     description:
-      'mTalha is a dev started in 2020 as one freelance developer and grew into a full-spectrum practice — built personally or through vetted specialists — without losing the habit of shipping it right.',
+      'Muhammad Talha Siddiqui — Full-spectrum engineering practice built on shipping it right. 5+ years of freelance experience, now working with vetted specialists.',
+    keywords: 'Muhammad Talha Siddiqui, software engineer, founder, freelance developer, technology consultant',
     path: paths.about,
   },
   work: {
     title: 'Selected Work — mTalha is a dev',
     description:
-      'A sample of client work across web, mobile, cloud, security, design, and AI, delivered before mTalha is a dev had a name.',
+      'Portfolio of completed projects: web development, mobile apps, cloud migrations, security reviews, and AI implementations across web, mobile, cloud, and security.',
+    keywords: 'portfolio, case studies, project examples, web development projects, cloud projects, security work',
     path: paths.work,
   },
   contact: {
     title: 'Contact — mTalha is a dev',
-    description: "Tell me what you're building — I reply within one business day.",
+    description: "Tell me what you're building — I reply within one business day. Direct email to founder. Free initial consultation.",
+    keywords: 'contact engineer, hire developer, software consultation, project inquiry, freelance work',
     path: paths.contact,
   },
   // Standalone tool, not part of the agency-services topic this site is
@@ -134,7 +139,8 @@ export const siteRoutes = {
   liveTv: {
     title: 'Live TV — Free Global Channels Online',
     description:
-      'Stream thousands of free live TV channels worldwide — search and filter by country and category, no subscription required.',
+      'Stream thousands of free live TV channels worldwide — search and filter by country and category, no subscription required. Entertainment, news, sports.',
+    keywords: 'live TV, free streaming, channels, worldwide TV, streaming service',
     path: paths.liveTv,
     noindex: true,
     jsonLd: buildFaqJsonLd(liveTvFaqs),
@@ -144,9 +150,11 @@ export const siteRoutes = {
 export function buildWorkSeo(project) {
   if (!project) return null
   const path = paths.workItem(project.slug)
+  const keywords = [project.title, project.sector, ...project.tags].join(', ')
   return {
     title: `${project.title} — ${SITE_NAME}`,
     description: project.desc,
+    keywords,
     path,
     jsonLd: {
       '@context': 'https://schema.org',
@@ -163,9 +171,11 @@ export function buildWorkSeo(project) {
 export function buildServiceSeo(service) {
   if (!service) return null
   const path = paths.service(service.slug)
+  const keywords = `${service.name}, ${service.stack.slice(0, 3).join(', ')}, ${service.slug.replace(/-/g, ' ')}`
   return {
     title: `${service.name} — ${SITE_NAME}`,
     description: service.summary,
+    keywords,
     path,
     jsonLd: [
       {

@@ -1,4 +1,17 @@
 User-agent: *
 Allow: /
+Disallow: /live-tv/
+Crawl-delay: 1
+Request-rate: 1/1s
 
 Sitemap: https://mTalha.is-a.dev/sitemap.xml
+
+# Google-specific rules
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
+# Bing-specific rules  
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 0

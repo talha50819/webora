@@ -51,7 +51,7 @@ function setJsonLd(jsonLd) {
 }
 
 /**
- * Sets per-route document title, meta description, canonical URL,
+ * Sets per-route document title, meta description, keywords, canonical URL,
  * Open Graph / Twitter Card tags, robots directive, and optional
  * JSON-LD structured data. Runs client-side on every route change —
  * search engines that execute JavaScript (Google, Bing) pick this up;
@@ -59,11 +59,12 @@ function setJsonLd(jsonLd) {
  * bakes the same metadata (sourced from `src/data/seo-content.js`) into a
  * static per-route `index.html` at build time as the fallback.
  */
-export function useSEO({ title, description, path = '/', noindex = false, jsonLd = null, image = DEFAULT_OG_IMAGE }) {
+export function useSEO({ title, description, keywords, path = '/', noindex = false, jsonLd = null, image = DEFAULT_OG_IMAGE }) {
   useEffect(() => {
     if (title) document.title = title
 
     setMetaByName('description', description)
+    setMetaByName('keywords', keywords)
     setMetaByName('robots', noindex ? 'noindex, nofollow' : 'index, follow')
 
     const url = `${SITE_URL}${path}`
