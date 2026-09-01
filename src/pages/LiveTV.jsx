@@ -23,6 +23,7 @@ export default function LiveTV() {
   const [search, setSearch] = useState('')
   const [categoryFilter, setCategoryFilter] = useState('')
   const [countryFilter, setCountryFilter] = useState('')
+  const [includeAdult, setIncludeAdult] = useState(false)
   const [page, setPage] = useState(1)
 
   const [playing, setPlaying] = useState(null) // { id, name, country, category }
@@ -90,7 +91,6 @@ export default function LiveTV() {
         const countryCodeSet = new Set()
         withStreams.forEach((ch) => {
           ch.categories?.forEach((cat) => {
-            if (cat.toLowerCase() === 'xxx') return
             const expanded = cat.length === 2 ? countryNameMap.get(cat.toUpperCase()) || cat : cat
             categorySet.add(expanded)
           })
@@ -134,9 +134,11 @@ export default function LiveTV() {
         countryName.includes(term)
       const matchesCategory = !categoryFilter || catsStr.includes(categoryFilter)
       const matchesCountry = !countryFilter || ch.country === countryFilter
-      return matchesSearch && matchesCategory && matchesCountry
+      const isAdult = (ch.categories || []).some((cat) => cat.toLowerCase() === 'xxx')
+      const matchesAdultFilter = includeAdult || !isAdult
+      return matchesSearch && matchesCategory && matchesCountry && matchesAdultFilter
     })
-  }, [channels, search, categoryFilter, countryFilter, countryNameMap])
+  }, [channels, search, categoryFilter, countryFilter, includeAdult, countryNameMap])
 
   useEffect(() => {
     filteredChannelsRef.current = filteredChannels
@@ -144,7 +146,7 @@ export default function LiveTV() {
 
   useEffect(() => {
     setPage(1)
-  }, [search, categoryFilter, countryFilter])
+  }, [search, categoryFilter, countryFilter, includeAdult])
 
   const totalPages = Math.max(1, Math.ceil(filteredChannels.length / ITEMS_PER_PAGE))
   const clampedPage = Math.min(page, totalPages)
@@ -262,6 +264,7 @@ export default function LiveTV() {
     setSearch('')
     setCategoryFilter('')
     setCountryFilter('')
+    setIncludeAdult(false)
   }
 
   const statusLabel = {
@@ -357,6 +360,16 @@ export default function LiveTV() {
                         </option>
                       ))}
                     </select>
+                  </div>
+                  <div className="form-field" style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-2)' }}>
+                    <input
+                      id="tv-adult"
+                      type="checkbox"
+                      checked={includeAdult}
+                      onChange={(e) => setIncludeAdult(e.target.checked)}
+                      style={{ margin: 0, width: 'auto' }}
+                    />
+                    <label htmlFor="tv-adult" style={{ margin: 0 }}>Include adult content</label>
                   </div>
                   <div className="form-field">
                     <label>&nbsp;</label>
