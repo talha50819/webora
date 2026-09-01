@@ -2,6 +2,19 @@
   command = "npm run build"
   publish = "dist"
 
+# Keep one canonical domain for search engines while preserving both legacy URLs.
+[[redirects]]
+  from = "https://webora.is-a.dev/*"
+  to = "https://mTalha.is-a.dev/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://talha.is-a.dev/*"
+  to = "https://mTalha.is-a.dev/:splat"
+  status = 301
+  force = true
+
 # Every real route is prerendered to a static index.html at build time
 # (see scripts/prerender-meta.mjs), so Netlify serves those directly with a
 # normal 200. This catch-all only fires for paths that don't match any
