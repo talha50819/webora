@@ -31,7 +31,7 @@ export default function Home() {
           your business runs on.
         </h1>
         <p className="type-lede">
-          webora is a dev — I plan, build, and deliver software, cloud, security,
+          mTalha is a dev — I plan, build, and deliver software, cloud, security,
           and AI projects for companies that need infrastructure built once and
           operated for years, not a demo that impresses in the first sprint and
           buckles in the third.
@@ -94,7 +94,7 @@ export default function Home() {
 
       <section className="section section--alt">
         <div className="container">
-          <div className="eyebrow" style={{ marginBottom: '1rem' }}>Why webora is a dev</div>
+          <div className="eyebrow" style={{ marginBottom: '1rem' }}>Why mTalha is a dev</div>
           <h2 className="type-h2" style={{ marginBottom: '2rem', maxWidth: '24ch' }}>
             Most vendors optimize for the kickoff call. I optimize for year three.
           </h2>

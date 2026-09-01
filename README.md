@@ -1,6 +1,6 @@
-# Webora
+# mTalha
 
-Website source for Webora — my personal developer portfolio, showcasing web/mobile/cloud/security projects.
+Website source for mTalha — my personal developer portfolio, showcasing web/mobile/cloud/security projects.
 
 ## Stack
 

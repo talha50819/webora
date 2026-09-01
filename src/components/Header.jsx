@@ -17,8 +17,8 @@ export default function Header() {
     <header className="site-header">
       <div className="container site-header__row">
         <NavLink to="/" className="logo-mark" onClick={() => setOpen(false)}>
-          <span className="logo-mark__box">W</span>
-          webora is a dev
+          <span className="logo-mark__box">M</span>
+          mTalha is a dev
         </NavLink>
 
         <nav className="main-nav">

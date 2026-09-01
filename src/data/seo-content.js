@@ -9,8 +9,8 @@
 // Keeping it here (plain data, no JSX/React) means both consumers stay in
 // sync automatically instead of drifting.
 
-export const SITE_URL = 'https://webora.is-a.dev'
-export const SITE_NAME = 'webora is a dev'
+export const SITE_URL = 'https://mTalha.is-a.dev'
+export const SITE_NAME = 'mTalha is a dev'
 export const DEFAULT_OG_IMAGE = `${SITE_URL}/og-image.png`
 
 // Netlify serves prerendered directory-index files (dist/about/index.html
@@ -52,11 +52,11 @@ export const faqs = [
     a: 'Under one business day. Tell me what you’re building on the contact page and you’ll hear back from me directly, not a sales queue.',
   },
   {
-    q: 'Is webora is a dev remote-first?',
+    q: 'Is mTalha is a dev remote-first?',
     a: "Yes — remote from day one. You work directly with me, the person building or directing your system, wherever you're based.",
   },
   {
-    q: 'What disciplines does webora is a dev cover?',
+    q: 'What disciplines does mTalha is a dev cover?',
     a: "Seven: web development, mobile app development, cloud & DevOps, cybersecurity, AI & machine learning, UI/UX design, and IT consulting — all coordinated by me personally, whether I'm building it myself or directing a vetted specialist for a piece outside my core stack.",
   },
 ]
@@ -98,32 +98,32 @@ function buildFaqJsonLd(items) {
 
 export const siteRoutes = {
   home: {
-    title: 'webora is a dev — Engineering Systems That Hold',
+    title: 'mTalha is a dev — Engineering Systems That Hold',
     description:
-      'webora is a dev — I plan, build, and deliver software, cloud, security, and AI projects personally or through vetted specialists, with fixed scope and infrastructure built to last.',
+      'mTalha is a dev — I plan, build, and deliver software, cloud, security, and AI projects personally or through vetted specialists, with fixed scope and infrastructure built to last.',
     path: paths.home,
     jsonLd: buildFaqJsonLd(faqs),
   },
   services: {
-    title: 'Services — webora is a dev',
+    title: 'Services — mTalha is a dev',
     description:
       'Seven full-spectrum engineering disciplines — web, mobile, cloud & DevOps, cybersecurity, AI/ML, UI/UX design, and IT consulting — all coordinated personally by one point of contact.',
     path: paths.services,
   },
   about: {
-    title: 'About — webora is a dev',
+    title: 'About — mTalha is a dev',
     description:
-      'webora is a dev started in 2020 as one freelance developer and grew into a full-spectrum practice — built personally or through vetted specialists — without losing the habit of shipping it right.',
+      'mTalha is a dev started in 2020 as one freelance developer and grew into a full-spectrum practice — built personally or through vetted specialists — without losing the habit of shipping it right.',
     path: paths.about,
   },
   work: {
-    title: 'Selected Work — webora is a dev',
+    title: 'Selected Work — mTalha is a dev',
     description:
-      'A sample of client work across web, mobile, cloud, security, design, and AI, delivered before webora is a dev had a name.',
+      'A sample of client work across web, mobile, cloud, security, design, and AI, delivered before mTalha is a dev had a name.',
     path: paths.work,
   },
   contact: {
-    title: 'Contact — webora is a dev',
+    title: 'Contact — mTalha is a dev',
     description: "Tell me what you're building — I reply within one business day.",
     path: paths.contact,
   },

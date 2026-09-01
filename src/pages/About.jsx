@@ -6,7 +6,7 @@ const timeline = [
   ['2020', 'Muhammad Talha Siddiqui starts out as an independent freelance developer, taking on web and software contracts solo.'],
   ['2022', 'Referral-driven client work expands into mobile, cloud, and security engagements — still a one-person operation.'],
   ['2024', 'Starts bringing in trusted freelancers and specialists project by project, for pieces outside my own core skills — never as in-house hires, always people I already know the work of.'],
-  ['2026', 'The practice becomes webora is a dev — the name for how I find clients, deliver the work myself or through a vetted specialist, and hand every project back finished.'],
+  ['2026', 'The practice becomes mTalha is a dev — the name for how I find clients, deliver the work myself or through a vetted specialist, and hand every project back finished.'],
 ]
 
 const principles = [
@@ -30,16 +30,16 @@ export default function About() {
   return (
     <>
       <section className="hero container" style={{ paddingBottom: 'var(--space-4)' }}>
-        <div className="hero__label eyebrow">About webora is a dev</div>
+        <div className="hero__label eyebrow">About mTalha is a dev</div>
         <h1 className="type-h1" style={{ maxWidth: '20ch' }}>
           Started by one freelancer who insisted on shipping it right. Still true.
         </h1>
         <p className="type-lede mt-4">
-          webora is a dev began in 2020 as one developer taking on freelance contracts.
+          mTalha is a dev began in 2020 as one developer taking on freelance contracts.
           What grew wasn't headcount — it was the range of problems clients trusted me
           to solve, from a single feature to the cloud migration behind it, and the
           network of vetted specialists I could call on when a project needed something
-          outside my own skills. That practice became webora is a dev.
+          outside my own skills. That practice became mTalha is a dev.
         </p>
       </section>
 
@@ -50,7 +50,7 @@ export default function About() {
             <h2 className="type-h2">Muhammad Talha Siddiqui</h2>
           </div>
           <p className="type-lede" style={{ maxWidth: 'none' }}>
-            Founder of webora is a dev. Started freelancing in 2020 and spent five
+            Founder of mTalha is a dev. Started freelancing in 2020 and spent five
             years taking direct responsibility for every project delivered — the
             habit that now shapes how things run: I find the client, scope the work,
             and either build it myself or bring in a specialist I've already vetted.

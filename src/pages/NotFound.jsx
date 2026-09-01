@@ -5,7 +5,7 @@ export default function NotFound() {
   const { pathname } = useLocation()
 
   useSEO({
-    title: 'Page Not Found — webora is a dev',
+    title: 'Page Not Found — mTalha is a dev',
     description: "The page you're looking for was moved, renamed, or never existed.",
     path: pathname,
     noindex: true,

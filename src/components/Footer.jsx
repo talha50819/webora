@@ -46,7 +46,7 @@ export default function Footer() {
       </div>
 
       <div className="container footer-bottom">
-        <span>© {year} webora is a dev. All rights reserved.</span>
+        <span>© {year} mTalha is a dev. All rights reserved.</span>
         <span>Engineering systems that hold.</span>
       </div>
     </footer>

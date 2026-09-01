@@ -46,7 +46,7 @@ export default function Contact() {
                 action={FORM_ENDPOINT}
                 method="POST"
               >
-                <input type="hidden" name="_subject" value="New project inquiry — webora is a dev" />
+                <input type="hidden" name="_subject" value="New project inquiry — mTalha is a dev" />
                 <input type="hidden" name="_next" value={`${typeof window !== 'undefined' ? window.location.origin : ''}${paths.contact}?sent=true`} />
 
                 <div className="grid-2" style={{ gap: '1rem' }}>
