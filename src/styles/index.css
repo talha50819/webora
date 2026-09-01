@@ -1,13 +1,4 @@
 /* ============================================================
-   FONT DISPLAY
-   ============================================================ */
-@supports (font-display: swap) {
-  body {
-    font-display: swap;
-  }
-}
-
-/* ============================================================
    RESET
    ============================================================ */
 *, *::before, *::after { box-sizing: border-box; }
@@ -66,7 +57,6 @@ body {
   background-position: center top;
   background-repeat: repeat-y;
   background-size: min(100%, var(--container)) 100%;
-  background-attachment: local;
   color: var(--ink);
   font-family: var(--font-display);
   font-size: 16px;
@@ -78,10 +68,9 @@ body {
   -ms-user-select: none;
   -webkit-touch-callout: none;
   -webkit-user-drag: none;
-  contain: layout style paint;
 }
 
-main { display: block; contain: layout style paint; }
+main { display: block; }
 
 /* ============================================================
    TYPE SCALE
