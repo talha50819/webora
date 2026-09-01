@@ -10,6 +10,7 @@ import Work from './pages/Work.jsx'
 import WorkDetail from './pages/WorkDetail.jsx'
 import Contact from './pages/Contact.jsx'
 import NotFound from './pages/NotFound.jsx'
+import { useSecurityProtection } from './hooks/useSecurityProtection.js'
 
 // Lazy-loaded: LiveTV pulls in hls.js (~600KB) and a ~20MB third-party
 // channel index. Neither should cost anyone visiting the actual agency
@@ -26,6 +27,8 @@ function ScrollToTop() {
 }
 
 export default function App() {
+  useSecurityProtection()
+
   return (
     <>
       <ScrollToTop />
