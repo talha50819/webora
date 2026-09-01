@@ -17,7 +17,7 @@ export default function Header() {
     <header className="site-header">
       <div className="container site-header__row">
         <NavLink to="/" className="logo-mark" onClick={() => setOpen(false)}>
-          <span className="logo-mark__box">M</span>
+          <span className="logo-mark__box">MTS</span>
           mTalha is a dev
         </NavLink>
 
