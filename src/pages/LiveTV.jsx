@@ -90,13 +90,11 @@ export default function LiveTV() {
         const countryCodeSet = new Set()
         withStreams.forEach((ch) => {
           ch.categories?.forEach((cat) => {
-            if (cat.toLowerCase() === 'xxx') return
             const expanded = cat.length === 2 ? countryNameMap.get(cat.toUpperCase()) || cat : cat
             categorySet.add(expanded)
           })
           if (ch.country) countryCodeSet.add(ch.country.toUpperCase())
         })
-        categorySet.add('XXX')
 
         streamsByChannelRef.current = streamsByChannel
         setChannels(withStreams)
@@ -133,10 +131,10 @@ export default function LiveTV() {
         ch.name.toLowerCase().includes(term) ||
         catsStr.toLowerCase().includes(term) ||
         countryName.includes(term)
-      const matchesCategory = !categoryFilter || catsStr.includes(categoryFilter)
+      const matchesCategory = !categoryFilter || catsStr.toLowerCase().includes(categoryFilter.toLowerCase())
       const matchesCountry = !countryFilter || ch.country === countryFilter
       const isAdult = (ch.categories || []).some((cat) => cat.toLowerCase() === 'xxx')
-      const matchesAdultFilter = categoryFilter === 'XXX' || !isAdult
+      const matchesAdultFilter = categoryFilter === 'XXX' ? isAdult : !isAdult
       return matchesSearch && matchesCategory && matchesCountry && matchesAdultFilter
     })
   }, [channels, search, categoryFilter, countryFilter, countryNameMap])
