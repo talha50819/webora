@@ -1,4 +1,13 @@
 /* ============================================================
+   FONT DISPLAY
+   ============================================================ */
+@supports (font-display: swap) {
+  body {
+    font-display: swap;
+  }
+}
+
+/* ============================================================
    RESET
    ============================================================ */
 *, *::before, *::after { box-sizing: border-box; }
@@ -57,6 +66,7 @@ body {
   background-position: center top;
   background-repeat: repeat-y;
   background-size: min(100%, var(--container)) 100%;
+  background-attachment: local;
   color: var(--ink);
   font-family: var(--font-display);
   font-size: 16px;
@@ -68,9 +78,10 @@ body {
   -ms-user-select: none;
   -webkit-touch-callout: none;
   -webkit-user-drag: none;
+  contain: layout style paint;
 }
 
-main { display: block; }
+main { display: block; contain: layout style paint; }
 
 /* ============================================================
    TYPE SCALE
@@ -157,7 +168,7 @@ h1, h2, h3, h4 {
 .section--ink { background: var(--ink); color: var(--paper); border-color: var(--ink); }
 .section--ink .eyebrow { color: var(--paper); }
 .section--ink .eyebrow::before { background: var(--lime); }
-.section--ink .type-lede { color: rgba(237, 233, 223, 0.7); }
+.section--ink .type-lede { color: rgba(237, 233, 223, 0.88); }
 
 .grid-2 {
   display: grid;
@@ -390,7 +401,7 @@ h1, h2, h3, h4 {
   color: var(--ink-soft);
 }
 .section--ink .stat-block { border-color: rgba(237,233,223,0.25); }
-.section--ink .stat-block__label { color: rgba(237,233,223,0.6); }
+.section--ink .stat-block__label { color: rgba(237,233,223,0.85); }
 
 @media (max-width: 860px) {
   .stat-grid { grid-template-columns: 1fr; }
@@ -416,8 +427,8 @@ h1, h2, h3, h4 {
   color: var(--paper);
   padding-left: var(--space-2);
 }
-.service-row:hover .service-row__tagline { color: rgba(237,233,223,0.65); }
-.service-row:hover .index-number { color: rgba(237,233,223,0.65); }
+.service-row:hover .service-row__tagline { color: rgba(237,233,223,0.85); }
+.service-row:hover .index-number { color: rgba(237,233,223,0.85); }
 .service-row__name { font-size: clamp(1.4rem, 3vw, 2.1rem); font-weight: 700; text-transform: uppercase; }
 .service-row__tagline { color: var(--ink-soft); max-width: 46ch; margin-top: 0.3rem; }
 .service-row__arrow { font-family: var(--font-mono); font-size: 1.4rem; transition: transform 0.15s ease; }
@@ -695,7 +706,7 @@ h1, h2, h3, h4 {
 }
 .tv-player__title { font-weight: 700; font-size: 1.2rem; }
 .tv-player__meta { display: flex; flex-wrap: wrap; gap: 0.6rem; align-items: center; }
-.tv-player__note { color: rgba(237, 233, 223, 0.6); }
+.tv-player__note { color: rgba(237, 233, 223, 0.85); }
 .tv-player__info .tag { border-color: rgba(237, 233, 223, 0.3); }
 
 .tv-badge {
