@@ -45,6 +45,15 @@ export const workDemos = {
     note: 'A genuinely working tool, not a mockup — it uses the browser’s native Web Crypto API. Nothing you type is ever sent anywhere or stored; every operation runs locally and is stateless by design.',
     frame: 'responsive',
   },
+  'ai-machine-learning': {
+    theme: 'visionai',
+    projectTitle: 'VisionAI',
+    tagline: 'An image classification & analysis app — a real neural network, running entirely in your browser.',
+    demoLabel: 'visionai.app',
+    highlights: ['Real MobileNetV2 inference', 'Runs 100% on-device', 'Drag-and-drop or sample images', '1,000-class label browser'],
+    note: 'Not a mockup — clicking "Load AI model" downloads a genuine pretrained MobileNetV2 and runs it with TensorFlow.js. No image you use here is ever uploaded anywhere.',
+    frame: 'responsive',
+  },
 }
 
 export function hasLiveDemo(slug) {

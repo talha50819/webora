@@ -1440,6 +1440,43 @@ input[type='range']::-moz-range-thumb {
   .cb-nav { width: 100%; order: 3; }
 }
 
+/* --- VisionAI (image classification app) — deep indigo with an electric
+   violet accent, pill radii. A "modern AI product" feel, distinct from
+   CipherBox/DeployFlow's flat technical consoles and from HabitFlow's
+   coral-on-violet (different accent hue, no bottom tab bar / phone frame —
+   this is a genuine web app, not a mobile one). --- */
+.demo-theme--visionai {
+  --dt-bg: #0d0b14; --dt-card: linear-gradient(160deg, #1c1830 0%, #120f1f 100%); --dt-fg: #f2f0f9; --dt-fg-soft: #8b84a3;
+  --dt-accent: #c084fc; --dt-accent-ink: #1a0630;
+  --dt-border: 1px solid rgba(255, 255, 255, 0.08); --dt-radius: 14px; --dt-radius-sm: 10px; --dt-radius-btn: 999px;
+  --dt-track: #201c33; --dt-tag-bg: rgba(192, 132, 252, 0.16); --dt-tag-fg: #c084fc;
+  --dt-font: system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --dt-font-mono: 'JetBrains Mono', ui-monospace, Menlo, monospace; --dt-font-display: inherit;
+  --dt-shadow: 0 20px 45px rgba(0, 0, 0, 0.5);
+}
+
+/* VisionAI's own screen chrome — same top-nav shape as the other web-app
+   demos, bespoke class names per the established per-demo convention. */
+.va-shell { padding: 0; }
+.va-topbar {
+  display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+  padding: 1.15rem clamp(1rem, 3vw, 2rem); border-bottom: var(--dt-border); flex-wrap: wrap;
+}
+.va-brand { display: flex; align-items: center; gap: 0.55rem; font-weight: 800; font-size: 1.02rem; color: var(--dt-fg); }
+.va-nav { display: flex; gap: 0.25rem; padding: 0.3rem; background: var(--dt-track); border-radius: 999px; overflow-x: auto; max-width: 100%; }
+.va-nav button {
+  display: flex; align-items: center; gap: 0.4rem; white-space: nowrap; flex-shrink: 0;
+  padding: 0.5rem 0.9rem; border-radius: 999px; font-size: 0.78rem; font-weight: 700;
+  color: var(--dt-fg-soft); background: transparent; cursor: pointer;
+}
+.va-nav button.is-active { background: var(--dt-accent); color: var(--dt-accent-ink); }
+.va-body { padding: clamp(1.5rem, 3.5vw, 2.25rem) clamp(1rem, 3vw, 2rem); }
+
+@container (max-width: 640px) {
+  .va-topbar { padding: 1rem; }
+  .va-nav { width: 100%; order: 3; }
+}
+
 /* ============================================================
    MISC UTILITIES
    ============================================================ */
