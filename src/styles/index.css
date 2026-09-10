@@ -888,6 +888,41 @@ h1, h2, h3, h4 {
   font-size: 0.9rem;
 }
 .dt-input:focus, .dt-select:focus { outline: 2px solid var(--dt-accent); outline-offset: 1px; }
+/* Range sliders (e.g. CipherBox's password-length control) — relying on
+   accent-color alone leaves the unfilled track browser-default white,
+   which reads as broken on a dark demo theme, so style both tracks and
+   thumb explicitly instead. */
+input[type='range'] {
+  appearance: none;
+  -webkit-appearance: none;
+  height: 6px;
+  border-radius: 999px;
+  background: var(--dt-track);
+  outline: none;
+}
+input[type='range']::-webkit-slider-thumb {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--dt-accent);
+  border: 2px solid var(--dt-bg);
+  cursor: pointer;
+}
+input[type='range']::-moz-range-track {
+  height: 6px;
+  border-radius: 999px;
+  background: var(--dt-track);
+}
+input[type='range']::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--dt-accent);
+  border: 2px solid var(--dt-bg);
+  cursor: pointer;
+}
 .dt-label {
   display: block;
   font-family: var(--dt-font-mono);
@@ -923,8 +958,13 @@ h1, h2, h3, h4 {
 .dt-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
 .dt-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem; }
 .dt-grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.75rem; }
-@media (max-width: 640px) { .dt-grid-3, .dt-grid-4 { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 420px) { .dt-grid-2, .dt-grid-3, .dt-grid-4 { grid-template-columns: 1fr; } }
+/* Container queries (not viewport media queries) — these live inside
+   .demo-frame, which is given `container-type: inline-size` below, so
+   they respond to the demo's own on-screen width. That's what lets the
+   device-preview switcher (see WorkDetail.jsx) resize the frame and get
+   a real responsive reflow, not just a shrunk screenshot. */
+@container (max-width: 640px) { .dt-grid-3, .dt-grid-4 { grid-template-columns: repeat(2, 1fr); } }
+@container (max-width: 420px) { .dt-grid-2, .dt-grid-3, .dt-grid-4 { grid-template-columns: 1fr; } }
 
 /* --------------------------------------------------------------
    Site chrome — for consumer-facing demos (storefront, booking,
@@ -1125,6 +1165,279 @@ h1, h2, h3, h4 {
   --dt-font: system-ui, -apple-system, 'Segoe UI', sans-serif;
   --dt-font-mono: inherit; --dt-font-display: inherit;
   --dt-shadow: 0 6px 16px rgba(79, 70, 229, 0.1);
+}
+
+/* --- Finora (personal finance dashboard) — rounded mint/indigo fintech app,
+   deliberately un-admin-panel: gradient cards, pill nav/buttons, glow --- */
+.demo-theme--finora {
+  --dt-bg: #0a0b13; --dt-card: linear-gradient(160deg, #181b2d 0%, #101120 100%); --dt-fg: #f2f4fa; --dt-fg-soft: #7d84a6;
+  --dt-accent: #22e5a6; --dt-accent-ink: #04140d;
+  --dt-border: 1px solid rgba(255, 255, 255, 0.08); --dt-radius: 18px; --dt-radius-sm: 12px; --dt-radius-btn: 999px;
+  --dt-track: #1b1e30; --dt-tag-bg: rgba(34, 229, 166, 0.14); --dt-tag-fg: #22e5a6;
+  --dt-font: system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --dt-font-mono: 'JetBrains Mono', ui-monospace, Menlo, monospace; --dt-font-display: inherit;
+  --dt-shadow: 0 20px 45px rgba(0, 0, 0, 0.4);
+}
+
+/* --------------------------------------------------------------
+   Full-bleed "product showcase" intro for a /work/:slug page with a
+   real demo wired up (see src/data/work-demos.js) — an immersive
+   landing moment in the demo's own theme, instead of reusing the
+   site's own paper-and-orange service-page hero. Reusable by any
+   future live demo: wrap it in that demo's .demo-theme--* class.
+   -------------------------------------------------------------- */
+.dt-showcase {
+  position: relative;
+  overflow: hidden;
+  background: var(--dt-bg);
+  color: var(--dt-fg);
+  font-family: var(--dt-font);
+  padding: clamp(3.5rem, 9vw, 6.5rem) clamp(1.25rem, 5vw, 4rem);
+}
+.dt-showcase::before {
+  content: '';
+  position: absolute;
+  inset: -30% -10% auto -10%;
+  height: 65%;
+  background: radial-gradient(ellipse at top, color-mix(in srgb, var(--dt-accent) 26%, transparent), transparent 72%);
+  pointer-events: none;
+}
+.dt-showcase__inner { position: relative; max-width: 46rem; margin: 0 auto; text-align: center; }
+.dt-showcase__eyebrow {
+  font-family: var(--dt-font-mono); text-transform: uppercase; letter-spacing: 0.14em;
+  font-size: 0.75rem; font-weight: 600; color: var(--dt-fg-soft); margin-bottom: 1.1rem;
+}
+.dt-showcase__title {
+  font-family: var(--dt-font-display); font-weight: 800; letter-spacing: -0.02em;
+  font-size: clamp(2.6rem, 7vw, 4.5rem); line-height: 1; margin-bottom: 1.1rem;
+}
+.dt-showcase__sub { font-size: clamp(1rem, 2vw, 1.2rem); color: var(--dt-fg-soft); max-width: 40ch; margin: 0 auto 1.85rem; line-height: 1.55; }
+.dt-showcase__chips { display: flex; gap: 0.6rem; flex-wrap: wrap; justify-content: center; margin-bottom: 2.1rem; }
+.dt-showcase__actions { display: flex; gap: 0.85rem; flex-wrap: wrap; justify-content: center; }
+
+/* --------------------------------------------------------------
+   Finora's own shell — top pill nav instead of the generic sidebar
+   app-kit (.dt-shell--app), plus a gradient balance hero. Bespoke to
+   this demo rather than added to the shared .dt-* kit.
+   -------------------------------------------------------------- */
+.fin-shell { padding: 0; }
+.fin-topbar {
+  display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+  padding: 1.15rem clamp(1rem, 3vw, 2rem); border-bottom: var(--dt-border); flex-wrap: wrap;
+}
+.fin-brand { display: flex; align-items: center; gap: 0.55rem; font-weight: 800; font-size: 1.05rem; color: var(--dt-fg); }
+.fin-nav { display: flex; gap: 0.25rem; padding: 0.3rem; background: var(--dt-track); border-radius: 999px; overflow-x: auto; max-width: 100%; }
+.fin-nav button {
+  display: flex; align-items: center; gap: 0.4rem; white-space: nowrap; flex-shrink: 0;
+  padding: 0.55rem 1rem; border-radius: 999px; font-size: 0.78rem; font-weight: 700;
+  color: var(--dt-fg-soft); background: transparent; cursor: pointer;
+}
+.fin-nav button.is-active { background: var(--dt-accent); color: var(--dt-accent-ink); }
+.fin-actions { display: flex; align-items: center; gap: 0.9rem; }
+.fin-body { padding: clamp(1.5rem, 3.5vw, 2.25rem) clamp(1rem, 3vw, 2rem); }
+
+.fin-balance {
+  position: relative; overflow: hidden;
+  border-radius: var(--dt-radius);
+  padding: clamp(1.5rem, 4vw, 2.25rem);
+  background: linear-gradient(135deg, rgba(34, 229, 166, 0.18), rgba(34, 184, 240, 0.09));
+  border: var(--dt-border);
+  margin-bottom: 1.5rem;
+  display: flex; justify-content: space-between; align-items: flex-end; gap: 1.5rem; flex-wrap: wrap;
+}
+.fin-balance__label { font-family: var(--dt-font-mono); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--dt-fg-soft); margin-bottom: 0.5rem; }
+.fin-balance__value { font-size: clamp(2.1rem, 5.5vw, 3rem); font-weight: 800; line-height: 1; }
+.fin-balance__stats { display: flex; gap: 1.75rem; flex-wrap: wrap; }
+.fin-balance__stat-value { font-weight: 700; font-size: 1.05rem; }
+
+@container (max-width: 640px) {
+  .fin-topbar { padding: 1rem; }
+  .fin-nav { width: 100%; order: 3; }
+  .fin-balance { align-items: flex-start; }
+}
+
+/* --------------------------------------------------------------
+   Device-view switcher for a /work/:slug demo-frame: real icon
+   buttons (see WorkDetail.jsx) that resize .demo-frame itself.
+   .demo-frame is a container-query root (below), so shrinking it
+   triggers the demo's actual responsive CSS — a real reflow, not a
+   shrunk screenshot.
+   -------------------------------------------------------------- */
+.demo-frame { container-type: inline-size; transition: max-width 0.35s ease; }
+.demo-frame__devices { display: flex; gap: 0.3rem; margin-left: 1rem; }
+.demo-frame__devices button {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 1.85rem; height: 1.85rem; border-radius: 4px;
+  color: var(--ink-soft); cursor: pointer;
+}
+.demo-frame__devices button.is-active { background: var(--ink); color: var(--paper); }
+.demo-frame__devices button:hover:not(.is-active) { color: var(--ink); }
+
+/* --- HabitFlow (habit & productivity app) — warm coral/violet, playful
+   and rounded. It's a genuine mobile app (not a responsive web dashboard
+   like Finora), so it's presented in a fixed phone frame with a bottom
+   tab bar — see .dt-phone-frame below and WorkDetail.jsx's frame branch. --- */
+.demo-theme--habitflow {
+  --dt-bg: #120f1a; --dt-card: linear-gradient(160deg, #241d36 0%, #170f24 100%); --dt-fg: #f5f2fb; --dt-fg-soft: #8b83a3;
+  --dt-accent: #ff6b4a; --dt-accent-ink: #2a0a02;
+  --dt-border: 1px solid rgba(255, 255, 255, 0.08); --dt-radius: 20px; --dt-radius-sm: 14px; --dt-radius-btn: 999px;
+  --dt-track: #241c35; --dt-tag-bg: rgba(255, 107, 74, 0.16); --dt-tag-fg: #ff9478;
+  --dt-font: system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --dt-font-mono: 'JetBrains Mono', ui-monospace, Menlo, monospace; --dt-font-display: inherit;
+  --dt-shadow: 0 20px 45px rgba(0, 0, 0, 0.45);
+}
+
+/* --------------------------------------------------------------
+   Fixed phone-hardware frame for a genuinely mobile demo. Neutral
+   dark bezel regardless of theme (reads as hardware, not themed UI) —
+   reusable by any future mobile-app demo, themed via .demo-theme--*
+   on the element that carries this class.
+   -------------------------------------------------------------- */
+.dt-phone-frame {
+  position: relative;
+  width: min(390px, 100%);
+  margin: 0 auto;
+  background: #0b0c14;
+  border-radius: 46px;
+  padding: 12px;
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+.dt-phone-frame__screen {
+  position: relative;
+  border-radius: 34px;
+  overflow: hidden;
+  height: min(780px, 80vh);
+  display: flex;
+  flex-direction: column;
+  background: var(--dt-bg);
+  color: var(--dt-fg);
+  font-family: var(--dt-font);
+}
+.dt-phone-frame__notch {
+  position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+  width: 38%; height: 26px; background: #0b0c14; border-radius: 0 0 16px 16px; z-index: 5;
+}
+.dt-phone-frame__home {
+  position: absolute; bottom: 6px; left: 50%; transform: translateX(-50%);
+  width: 36%; height: 4px; border-radius: 3px; background: rgba(255, 255, 255, 0.35); z-index: 5;
+}
+
+/* HabitFlow's own screen chrome */
+.hf-topbar { display: flex; align-items: center; justify-content: space-between; padding: 1.5rem 1.1rem 0.7rem; flex-shrink: 0; }
+.hf-topbar__brand { display: flex; align-items: center; gap: 0.5rem; font-weight: 800; font-size: 1.02rem; }
+.hf-content { flex: 1; overflow-y: auto; padding: 0.5rem 1.1rem 1.25rem; }
+.hf-hero { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-bottom: 1.5rem; }
+.hf-hero__date { font-size: 1.2rem; font-weight: 800; margin-top: 0.2rem; max-width: 13rem; }
+.hf-section-title { font-size: 0.78rem; font-weight: 700; color: var(--dt-fg-soft); margin-bottom: 0.7rem; }
+.hf-habit-row {
+  display: flex; align-items: center; gap: 0.75rem; width: 100%;
+  padding: 0.65rem 0; border-bottom: var(--dt-border); text-align: left; cursor: pointer;
+}
+.hf-habit-row:last-child { border-bottom: none; }
+
+.hf-tabbar {
+  display: flex; flex-shrink: 0; border-top: var(--dt-border); background: var(--dt-card);
+  padding: 0.55rem 0.25rem 0.9rem;
+}
+.hf-tabbar button {
+  flex: 1; display: flex; flex-direction: column; align-items: center; gap: 0.25rem;
+  padding: 0.35rem 0; color: var(--dt-fg-soft); font-size: 0.64rem; font-weight: 700; cursor: pointer;
+}
+.hf-tabbar button.is-active { color: var(--dt-accent); }
+
+@media (max-width: 480px) {
+  .dt-phone-frame { border-radius: 32px; padding: 8px; }
+  .dt-phone-frame__screen { border-radius: 24px; height: min(700px, 78vh); }
+}
+
+/* --- DeployFlow (CI/CD platform) — dark slate/cyan ops console. Monospace
+   as the primary font (not just dt-font-mono) and sharp, small radii —
+   reads as an engineering tool, not a consumer app like Finora/HabitFlow. --- */
+.demo-theme--deployflow {
+  --dt-bg: #0a0e14; --dt-card: linear-gradient(160deg, #131926 0%, #0d1119 100%); --dt-fg: #e2e8f0; --dt-fg-soft: #64748b;
+  --dt-accent: #38bdf8; --dt-accent-ink: #041824;
+  --dt-border: 1px solid rgba(255, 255, 255, 0.08); --dt-radius: 8px; --dt-radius-sm: 6px; --dt-radius-btn: 6px;
+  --dt-track: #161d2b; --dt-tag-bg: rgba(56, 189, 248, 0.14); --dt-tag-fg: #38bdf8;
+  --dt-font: 'JetBrains Mono', ui-monospace, Menlo, monospace;
+  --dt-font-mono: inherit; --dt-font-display: inherit;
+  --dt-shadow: 0 20px 45px rgba(0, 0, 0, 0.5);
+}
+
+@keyframes df-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.45; }
+}
+
+/* DeployFlow's own screen chrome — top pill nav + body, same shape as
+   Finora's .fin-* shell but bespoke (see comment on .fin-shell). */
+.df-shell { padding: 0; }
+.df-topbar {
+  display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+  padding: 1.15rem clamp(1rem, 3vw, 2rem); border-bottom: var(--dt-border); flex-wrap: wrap;
+}
+.df-brand { display: flex; align-items: center; gap: 0.55rem; font-weight: 700; font-size: 1.02rem; color: var(--dt-fg); }
+.df-nav { display: flex; gap: 0.25rem; padding: 0.3rem; background: var(--dt-track); border-radius: 8px; overflow-x: auto; max-width: 100%; }
+.df-nav button {
+  display: flex; align-items: center; gap: 0.4rem; white-space: nowrap; flex-shrink: 0;
+  padding: 0.5rem 0.9rem; border-radius: 5px; font-size: 0.76rem; font-weight: 700;
+  color: var(--dt-fg-soft); background: transparent; cursor: pointer;
+}
+.df-nav button.is-active { background: var(--dt-accent); color: var(--dt-accent-ink); }
+.df-body { padding: clamp(1.5rem, 3.5vw, 2.25rem) clamp(1rem, 3vw, 2rem); }
+
+@container (max-width: 640px) {
+  .df-topbar { padding: 1rem; }
+  .df-nav { width: 100%; order: 3; }
+}
+
+/* --- CipherBox (client-side crypto tool) — near-black with a crimson/
+   security-alert accent. Distinct from DeployFlow's cyan-ops-console (same
+   monospace-technical family, different hue and no card gradient — flatter,
+   more "raw terminal" than "product dashboard"). --- */
+.demo-theme--cipherbox {
+  --dt-bg: #08090c; --dt-card: #14161c; --dt-fg: #f1f2f5; --dt-fg-soft: #7a7f8c;
+  --dt-accent: #ff3b5c; --dt-accent-ink: #2a0209;
+  --dt-border: 1px solid rgba(255, 255, 255, 0.08); --dt-radius: 6px; --dt-radius-sm: 4px; --dt-radius-btn: 6px;
+  --dt-track: #1a1c22; --dt-tag-bg: rgba(255, 59, 92, 0.14); --dt-tag-fg: #ff6b85;
+  --dt-font: 'JetBrains Mono', ui-monospace, Menlo, monospace;
+  --dt-font-mono: inherit; --dt-font-display: inherit;
+  --dt-shadow: 0 20px 45px rgba(0, 0, 0, 0.55);
+}
+
+/* CipherBox's own screen chrome — same top-nav shape as Finora/DeployFlow,
+   bespoke class names per the established per-demo convention. */
+.cb-shell { padding: 0; }
+.cb-topbar {
+  display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+  padding: 1.15rem clamp(1rem, 3vw, 2rem); border-bottom: var(--dt-border); flex-wrap: wrap;
+}
+.cb-brand { display: flex; align-items: center; gap: 0.55rem; font-weight: 700; font-size: 1.02rem; color: var(--dt-fg); }
+.cb-nav { display: flex; gap: 0.25rem; padding: 0.3rem; background: var(--dt-track); border-radius: 6px; overflow-x: auto; max-width: 100%; }
+.cb-nav button {
+  display: flex; align-items: center; gap: 0.4rem; white-space: nowrap; flex-shrink: 0;
+  padding: 0.5rem 0.9rem; border-radius: 4px; font-size: 0.76rem; font-weight: 700;
+  color: var(--dt-fg-soft); background: transparent; cursor: pointer;
+}
+.cb-nav button.is-active { background: var(--dt-accent); color: var(--dt-accent-ink); }
+.cb-body { padding: clamp(1.5rem, 3.5vw, 2.25rem) clamp(1rem, 3vw, 2rem); }
+
+.cb-textarea { width: 100%; resize: vertical; min-height: 5.5rem; line-height: 1.5; }
+.cb-output {
+  font-family: var(--dt-font-mono); font-size: 0.8rem; line-height: 1.6;
+  background: var(--dt-track); border-radius: var(--dt-radius-sm); padding: 0.8rem 0.9rem;
+  word-break: break-all; white-space: pre-wrap; margin-bottom: 0;
+}
+.cb-alert {
+  display: flex; align-items: flex-start; gap: 0.6rem;
+  background: rgba(255, 59, 92, 0.1); border: 1px solid rgba(255, 59, 92, 0.35);
+  color: #ff6b85; border-radius: var(--dt-radius-sm); padding: 0.8rem 1rem;
+  font-size: 0.85rem; margin-bottom: 1rem;
+}
+
+@container (max-width: 640px) {
+  .cb-topbar { padding: 1rem; }
+  .cb-nav { width: 100%; order: 3; }
 }
 
 /* ============================================================

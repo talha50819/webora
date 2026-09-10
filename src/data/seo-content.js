@@ -9,6 +9,8 @@
 // Keeping it here (plain data, no JSX/React) means both consumers stay in
 // sync automatically instead of drifting.
 
+import { workDemos } from './work-demos.js'
+
 export const SITE_URL = 'https://mTalha.is-a.dev'
 export const SITE_NAME = 'mTalha is a dev'
 export const DEFAULT_OG_IMAGE = `${SITE_URL}/og-image.png`
@@ -25,7 +27,9 @@ export const paths = {
   about: '/about/',
   contact: '/contact/',
   liveTv: '/live-tv/',
+  work: '/work/',
   service: (slug) => `/services/${slug}/`,
+  workItem: (slug) => `/work/${slug}/`,
 }
 
 // Rendered on Home as a visible FAQ section and exposed as FAQPage JSON-LD
@@ -123,6 +127,17 @@ export const siteRoutes = {
     keywords: 'contact engineer, hire developer, software consultation, project inquiry, freelance work',
     path: paths.contact,
   },
+  // One real interactive demo live so far (Finora, under Web Development —
+  // see src/data/work-demos.js), the rest still placeholders. noindex'd
+  // until every slot has real project content, same tradeoff as liveTv below.
+  work: {
+    title: `Work — ${SITE_NAME}`,
+    description:
+      'Demo projects for each service — Finora, a personal finance dashboard, is live under Web Development. Mobile apps, cloud & DevOps, cybersecurity, AI/ML, UI/UX design, and IT consulting demos coming soon.',
+    keywords: 'portfolio, demo projects, case studies, mTalha is a dev',
+    path: paths.work,
+    noindex: true,
+  },
   // Standalone tool, not part of the agency-services topic this site is
   // otherwise built around — noindex'd on purpose (see comment above
   // liveTvFaqs) and left out of sitemap.xml. Remove `noindex` and add it
@@ -167,5 +182,20 @@ export function buildServiceSeo(service) {
         ],
       },
     ],
+  }
+}
+
+// Metadata for a work/:slug page — pulls in the real project title/tagline
+// once src/data/work-demos.js has an entry for that slug, otherwise falls
+// back to placeholder copy. noindex'd for the same reason as siteRoutes.work
+// above (most slots have nothing real to show yet).
+export function buildWorkSeo(service) {
+  if (!service) return null
+  const project = workDemos[service.slug]
+  return {
+    title: project ? `${project.projectTitle} — ${service.name} demo — ${SITE_NAME}` : `${service.name} demo — ${SITE_NAME}`,
+    description: project ? project.tagline : `Demo project for ${service.name} — coming soon.`,
+    path: paths.workItem(service.slug),
+    noindex: true,
   }
 }

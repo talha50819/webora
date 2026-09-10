@@ -22,7 +22,7 @@
 import { readFileSync, writeFileSync, mkdirSync } from 'node:fs'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { siteRoutes, buildServiceSeo, SITE_URL } from '../src/data/seo-content.js'
+import { siteRoutes, buildServiceSeo, buildWorkSeo, SITE_URL } from '../src/data/seo-content.js'
 import { services } from '../src/data/services.js'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
@@ -78,7 +78,9 @@ const routes = [
   siteRoutes.about,
   siteRoutes.contact,
   siteRoutes.liveTv,
+  siteRoutes.work,
   ...services.map((s) => buildServiceSeo(s)),
+  ...services.map((s) => buildWorkSeo(s)),
 ]
 
 console.log(`Prerendering static <head> metadata for ${routes.length} routes...`)

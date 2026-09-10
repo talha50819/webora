@@ -15,19 +15,6 @@
   status = 301
   force = true
 
-# Work/portfolio page was removed from the site (was previously live and
-# sitemapped) — send any existing links/bookmarks/search results to Home
-# instead of a hard 404.
-[[redirects]]
-  from = "/work"
-  to = "/"
-  status = 301
-
-[[redirects]]
-  from = "/work/*"
-  to = "/"
-  status = 301
-
 # Every real route is prerendered to a static index.html at build time
 # (see scripts/prerender-meta.mjs), so Netlify serves those directly with a
 # normal 200. This catch-all only fires for paths that don't match any
