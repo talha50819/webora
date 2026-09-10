@@ -23,11 +23,9 @@ export const paths = {
   home: '/',
   services: '/services/',
   about: '/about/',
-  work: '/work/',
   contact: '/contact/',
   liveTv: '/live-tv/',
   service: (slug) => `/services/${slug}/`,
-  workItem: (slug) => `/work/${slug}/`,
 }
 
 // Rendered on Home as a visible FAQ section and exposed as FAQPage JSON-LD
@@ -119,13 +117,6 @@ export const siteRoutes = {
     keywords: 'Muhammad Talha Siddiqui, software engineer, founder, freelance developer, technology consultant',
     path: paths.about,
   },
-  work: {
-    title: 'Selected Work — mTalha is a dev',
-    description:
-      'Portfolio of completed projects: web development, mobile apps, cloud migrations, security reviews, and AI implementations across web, mobile, cloud, and security.',
-    keywords: 'portfolio, case studies, project examples, web development projects, cloud projects, security work',
-    path: paths.work,
-  },
   contact: {
     title: 'Contact — mTalha is a dev',
     description: "Tell me what you're building — I reply within one business day. Direct email to founder. Free initial consultation.",
@@ -145,27 +136,6 @@ export const siteRoutes = {
     noindex: true,
     jsonLd: buildFaqJsonLd(liveTvFaqs),
   },
-}
-
-export function buildWorkSeo(project) {
-  if (!project) return null
-  const path = paths.workItem(project.slug)
-  const keywords = [project.title, project.sector, ...project.tags].join(', ')
-  return {
-    title: `${project.title} — ${SITE_NAME}`,
-    description: project.desc,
-    keywords,
-    path,
-    jsonLd: {
-      '@context': 'https://schema.org',
-      '@type': 'BreadcrumbList',
-      itemListElement: [
-        { '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE_URL}${paths.home}` },
-        { '@type': 'ListItem', position: 2, name: 'Work', item: `${SITE_URL}${paths.work}` },
-        { '@type': 'ListItem', position: 3, name: project.title, item: `${SITE_URL}${path}` },
-      ],
-    },
-  }
 }
 
 export function buildServiceSeo(service) {
