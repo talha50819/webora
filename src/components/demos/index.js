@@ -3,6 +3,8 @@ import HabitFlowDemo from './habitflow/HabitFlowDemo.jsx'
 import DeployFlowDemo from './deployflow/DeployFlowDemo.jsx'
 import CipherBoxDemo from './cipherbox/CipherBoxDemo.jsx'
 import VisionAIDemo from './visionai/VisionAIDemo.jsx'
+import PrismDemo from './prism/PrismDemo.jsx'
+import CompassDemo from './compass/CompassDemo.jsx'
 
 // Keyed by service slug (src/data/services.js) — every slug with an entry
 // here gets a real interactive demo on its /work/:slug page instead of the
@@ -21,4 +23,6 @@ export const demoComponents = {
   'cloud-devops': DeployFlowDemo,
   cybersecurity: CipherBoxDemo,
   'ai-machine-learning': VisionAIDemo,
+  'ui-ux-design': PrismDemo,
+  'it-consulting': CompassDemo,
 }

@@ -1477,6 +1477,79 @@ input[type='range']::-moz-range-thumb {
   .va-nav { width: 100%; order: 3; }
 }
 
+/* --- Prism (UI/UX design system generator) — the one demo whose accent
+   ISN'T fixed here: --dt-accent/--dt-accent-ink/--dt-tag-bg/--dt-tag-fg are
+   set inline by PrismDemo.jsx from whatever color the visitor picks (with
+   a real contrast check choosing black or white ink), because the whole
+   point of the demo is that its own UI re-themes live. Everything else
+   (bg/card/fg/radius/font) stays fixed dark chrome around that. --- */
+.demo-theme--prism {
+  --dt-bg: #131319; --dt-card: linear-gradient(160deg, #1d1d27 0%, #121218 100%); --dt-fg: #f2f0f9; --dt-fg-soft: #8b899a;
+  --dt-border: 1px solid rgba(255, 255, 255, 0.08); --dt-radius: 12px; --dt-radius-sm: 8px; --dt-radius-btn: 8px;
+  --dt-track: #24242f;
+  --dt-font: system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --dt-font-mono: 'JetBrains Mono', ui-monospace, Menlo, monospace; --dt-font-display: inherit;
+  --dt-shadow: 0 20px 45px rgba(0, 0, 0, 0.5);
+}
+
+/* Prism's own screen chrome — same top-nav shape as the other web-app
+   demos, bespoke class names per the established per-demo convention. */
+.pr-shell { padding: 0; }
+.pr-topbar {
+  display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+  padding: 1.15rem clamp(1rem, 3vw, 2rem); border-bottom: var(--dt-border); flex-wrap: wrap;
+}
+.pr-brand { display: flex; align-items: center; gap: 0.55rem; font-weight: 800; font-size: 1.02rem; color: var(--dt-fg); }
+.pr-nav { display: flex; gap: 0.25rem; padding: 0.3rem; background: var(--dt-track); border-radius: 8px; overflow-x: auto; max-width: 100%; }
+.pr-nav button {
+  display: flex; align-items: center; gap: 0.4rem; white-space: nowrap; flex-shrink: 0;
+  padding: 0.5rem 0.9rem; border-radius: 6px; font-size: 0.78rem; font-weight: 700;
+  color: var(--dt-fg-soft); background: transparent; cursor: pointer;
+}
+.pr-nav button.is-active { background: var(--dt-accent); color: var(--dt-accent-ink); }
+.pr-body { padding: clamp(1.5rem, 3.5vw, 2.25rem) clamp(1rem, 3vw, 2rem); }
+
+@container (max-width: 640px) {
+  .pr-topbar { padding: 1rem; }
+  .pr-nav { width: 100%; order: 3; }
+}
+
+/* --- Compass (IT consulting maturity assessment) — deep navy with a warm
+   gold accent, a classic strategy-consulting palette. Distinct from every
+   other demo's hue (cyan/mint/coral/crimson/violet all taken), moderate
+   radii for a professional, boardroom-report feel. --- */
+.demo-theme--compass {
+  --dt-bg: #0a0e1a; --dt-card: linear-gradient(160deg, #141a2c 0%, #0c1020 100%); --dt-fg: #f0f2f8; --dt-fg-soft: #8b8fa3;
+  --dt-accent: #f0b429; --dt-accent-ink: #2a1a02;
+  --dt-border: 1px solid rgba(255, 255, 255, 0.08); --dt-radius: 12px; --dt-radius-sm: 8px; --dt-radius-btn: 8px;
+  --dt-track: #1c2338; --dt-tag-bg: rgba(240, 180, 41, 0.16); --dt-tag-fg: #f0b429;
+  --dt-font: system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --dt-font-mono: 'JetBrains Mono', ui-monospace, Menlo, monospace; --dt-font-display: inherit;
+  --dt-shadow: 0 20px 45px rgba(0, 0, 0, 0.5);
+}
+
+/* Compass's own screen chrome — same top-nav shape as the other web-app
+   demos, bespoke class names per the established per-demo convention. */
+.co-shell { padding: 0; }
+.co-topbar {
+  display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+  padding: 1.15rem clamp(1rem, 3vw, 2rem); border-bottom: var(--dt-border); flex-wrap: wrap;
+}
+.co-brand { display: flex; align-items: center; gap: 0.55rem; font-weight: 800; font-size: 1.02rem; color: var(--dt-fg); }
+.co-nav { display: flex; gap: 0.25rem; padding: 0.3rem; background: var(--dt-track); border-radius: 8px; overflow-x: auto; max-width: 100%; }
+.co-nav button {
+  display: flex; align-items: center; gap: 0.4rem; white-space: nowrap; flex-shrink: 0;
+  padding: 0.5rem 0.9rem; border-radius: 6px; font-size: 0.78rem; font-weight: 700;
+  color: var(--dt-fg-soft); background: transparent; cursor: pointer;
+}
+.co-nav button.is-active { background: var(--dt-accent); color: var(--dt-accent-ink); }
+.co-body { padding: clamp(1.5rem, 3.5vw, 2.25rem) clamp(1rem, 3vw, 2rem); }
+
+@container (max-width: 640px) {
+  .co-topbar { padding: 1rem; }
+  .co-nav { width: 100%; order: 3; }
+}
+
 /* ============================================================
    MISC UTILITIES
    ============================================================ */

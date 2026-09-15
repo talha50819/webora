@@ -54,6 +54,24 @@ export const workDemos = {
     note: 'Not a mockup — clicking "Load AI model" downloads a genuine pretrained MobileNetV2 and runs it with TensorFlow.js. No image you use here is ever uploaded anywhere.',
     frame: 'responsive',
   },
+  'ui-ux-design': {
+    theme: 'prism',
+    projectTitle: 'Prism',
+    tagline: 'A live design-system generator — real WCAG contrast math, a generated color scale, and a type system, all from one picked color.',
+    demoLabel: 'prism.app',
+    highlights: ['Real WCAG contrast checks', 'Generated color scale', 'Live type scale', 'Component preview'],
+    note: 'Every number here is computed, not looked up — pick a color and the whole interface, including its own accent, re-themes from it live. Nothing is saved between visits.',
+    frame: 'responsive',
+  },
+  'it-consulting': {
+    theme: 'compass',
+    projectTitle: 'Compass',
+    tagline: 'A technology & delivery maturity assessment — six real questions, a scored roadmap, and a benchmark comparison.',
+    demoLabel: 'compass.app',
+    highlights: ['Real scored assessment', 'Prioritized roadmap', 'Radar chart breakdown', 'Illustrative benchmark'],
+    note: 'The score, maturity label, and every recommendation are computed live from the answers given in the Assessment tab — nothing is pre-written per visit, and nothing is saved between visits.',
+    frame: 'responsive',
+  },
 }
 
 export function hasLiveDemo(slug) {
