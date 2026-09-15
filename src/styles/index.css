@@ -888,6 +888,12 @@ h1, h2, h3, h4 {
   font-size: 0.9rem;
 }
 .dt-input:focus, .dt-select:focus { outline: 2px solid var(--dt-accent); outline-offset: 1px; }
+/* The <select> box itself picks up --dt-card fine (including when that's a
+   gradient), but its native dropdown popup is OS-rendered and several
+   browsers (Chrome/Windows in particular) don't reliably inherit that for
+   the option list, leaving pale system-default text on a white background.
+   --dt-bg is always a solid color, so set it explicitly on <option>. */
+.dt-select option { background-color: var(--dt-bg); color: var(--dt-fg); }
 /* Range sliders (e.g. CipherBox's password-length control) — relying on
    accent-color alone leaves the unfilled track browser-default white,
    which reads as broken on a dark demo theme, so style both tracks and
